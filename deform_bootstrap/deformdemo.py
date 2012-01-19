@@ -1,4 +1,6 @@
 from deform import ZPTRendererFactory
+from pyramid.i18n import get_localizer
+from pyramid.threadlocal import get_current_request
 
 from deform_bootstrap import includeme as base_includeme
 from deform_bootstrap import search_path
@@ -8,8 +10,6 @@ from deform_bootstrap import search_path
 # not code from here:
 
 def translator(term):
-    from pyramid.i18n import get_localizer
-    from pyramid.threadlocal import get_current_request
     return get_localizer(get_current_request()).translate(term)
 
 zpt_renderer = ZPTRendererFactory(search_path, translator)
