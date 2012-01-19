@@ -1,0 +1,81 @@
+<form
+  id="${field.formid}"
+  class="deform ${field.css_class}"
+  action="${field.action}"
+  method="${field.method}"
+  enctype="multipart/form-data"
+  accept-charset="utf-8"
+  i18n:domain="deform">
+
+  <fieldset>
+
+    <legend tal:condition="field.title">${field.title}</legend>
+
+    <input type="hidden" name="_charset_" />
+    <input type="hidden" name="__formid__" value="${field.formid}"/>
+
+    <div class="clearfix alert-message error" tal:condition="field.error">
+      <p>
+        <span class="errorMsgLbl" i18n:translate="">
+          There was a problem with your submission
+        </span>
+        <span class="errorMsg" i18n:translate="">
+          Errors have been highlighted below
+        </span>
+      </p>
+      <p class="errorMsg">${field.errormsg}</p>
+    </div>
+    
+    <div
+        tal:define="rndr field.renderer;
+                    tmpl field.widget.item_template"
+        tal:repeat="f field.children"
+        tal:replace="structure
+                     rndr(tmpl,field=f,cstruct=cstruct.get(f.name, null))" />
+
+    <div class="actions">
+      <tal:block repeat="button field.buttons">
+        <button
+            tal:attributes="disabled button.disabled"
+            id="${field.formid+button.name}"
+            name="${button.name}"
+            type="${button.type}"
+            class="btn ${repeat.button.start and 'primary' or ''}"
+            value="${button.value}">
+          ${button.title}
+        </button>
+      </tal:block>
+    </div>
+
+  </fieldset>
+
+<script type="text/javascript" tal:condition="field.use_ajax">
+  function deform_ajaxify(response, status, xhr, form, oid, mthd){
+     var options = {
+       target: '#' + oid,
+       replaceTarget: true,
+       success: function(response, status, xhr, form){
+         deform_ajaxify(response, status, xhr, form, oid);
+       }
+     };
+     var extra_options = ${field.ajax_options};
+     var name;
+     if (extra_options) {
+       for (name in extra_options) {
+         options[name] = extra_options[name];
+       };
+     };
+     $('#' + oid).ajaxForm(options);
+     if(mthd){
+       mthd(response, status, xhr, form);
+     }
+  }
+  deform.addCallback(
+     '${field.formid}',
+     function(oid) {
+       deform_ajaxify(null, null, null, null, oid);
+     }
+  );
+</script>
+
+</form>

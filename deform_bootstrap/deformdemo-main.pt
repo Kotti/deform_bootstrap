@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      metal:define-macro="master"
+      tal:define="app_url request.application_url;
+                  static app_url + '/static'">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Deform Bootstrap Demo Site
+    </title>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="${app_url}/static-deform_boostrap/bootstrap.min.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="${app_url}/pygments.css" type="text/css" />
+
+    <!-- Widget requirements -->
+    <tal:block repeat="reqt css_links|[]">
+      <link rel="stylesheet" href="${static}/${reqt}" type="text/css" />
+    </tal:block>
+    <tal:block repeat="reqt js_links|[]">
+      <script type="text/javascript" src="${static}/${reqt}"></script>
+    </tal:block>
+  </head>
+  
+  <body id="public">
+
+    <div class="content">
+      <div class="page-header">
+        <h1>Deform Bootstrap Demo</h1>
+      </div>
+      <div class="row">
+
+        <div tal:condition="showmenu" class="menu span4">
+          <ul>
+            <li tal:repeat="(title, name) demos"><a href="${name}/">${title}</a></li>
+          </ul>
+        </div>
+
+        <div class="${showmenu and 'span12' or 'span16'}">
+          <span metal:define-slot="main"/>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+</html>

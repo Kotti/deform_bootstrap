@@ -1,0 +1,26 @@
+<fieldset i18n:domain="deform">
+
+  <legend tal:condition="field.title">${field.title}</legend>
+
+  <div class="clearfix alert-message error" tal:condition="field.errormsg">
+    <p i18n:translate="">
+      There was a problem with this section
+    </p>
+    <p>${field.errormsg}</p>
+  </div>
+  
+  <div tal:condition="field.description">
+    ${field.description}
+  </div>
+
+  <input type="hidden" name="__start__" value="${field.name}:mapping"/>
+
+  <div
+      tal:define="rndr field.renderer;
+                  tmpl field.widget.item_template"
+      tal:repeat="f field.children"
+      tal:replace="structure rndr(tmpl,field=f,cstruct=cstruct.get(f.name,null))" />
+
+  <input type="hidden" name="__end__" value="${field.name}:mapping"/>
+
+</fieldset>

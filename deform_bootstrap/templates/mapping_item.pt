@@ -1,0 +1,35 @@
+<div class="clearfix ${field.error and 'error' or ''}"
+     id="item-${field.oid}"
+     tal:omit-tag="field.widget.hidden"
+     i18n:domain="deform">
+
+  <label for="${field.oid}"
+         tal:condition="not (field.widget.hidden or
+                             field.widget.category == 'structural')">
+    ${field.title}
+    <span tal:condition="field.required"
+          class="req" id="req-${field.oid}">*</span>
+  </label>
+
+  <div class="input" tal:omit-tag="field.widget.hidden">
+
+    <span tal:replace="structure field.serialize(cstruct)" />
+
+    <span class="help-inline"
+          tal:condition="field.error and not field.widget.hidden and not field.typ.__class__.__name__=='Mapping'">
+      <span
+          tal:define="errstr 'error-%s' % field.oid"
+          tal:repeat="msg field.error.messages()"
+          tal:attributes="id repeat.msg.index==0 and errstr or
+                          ('%s-%s' % (errstr, repeat.msg.index))"
+          class="${field.widget.error_class}">
+        <tal:block i18n:translate="">${msg}</tal:block>
+      </span>
+    </span>
+
+    <span class="help-block" tal:condition="field.description">
+      ${field.description}
+    </span>
+
+  </div>
+</div>
