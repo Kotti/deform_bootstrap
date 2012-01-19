@@ -18,7 +18,7 @@ requires = [
 
 setup(
     name='deform_bootstrap',
-    version='0.1a1',
+    version='0.1a2',
     description="Bootstrap compatible templates for the deform form library",
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
