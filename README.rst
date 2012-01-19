@@ -2,7 +2,8 @@
 deform_bootstrap
 ================
 
-``deform_bootstrap`` provides Bootstrap compatible templates for the
+``deform_bootstrap`` provides `Bootstrap
+<http://twitter.github.com/bootstrap/>`_ compatible templates for the
 `deform form library <http://pypi.python.org/pypi/deform/0.9.3>`_.
 
 How to use it
@@ -28,9 +29,9 @@ widgets include markup with ``<ul>`` and ``<li>`` elements that don't
 work very well with Bootstrap.  Contributions the in form of markup
 changes and style corrections are most welcome.
 
-``deform_bootstrap`` currently passes around 95% of the `deformdemo <>`_
-tests.  (The remaining five percent are probably related to a setup
-issue with the the tests.)
+``deform_bootstrap`` currently passes around 95% of the `deformdemo
+<http://deformdemo.repoze.org/>`_ tests.  (The remaining five percent
+are probably related to a setup issue with the the tests.)
 
 If you want to quickly try out ``deform_bootstrap`` and see how it
 looks in practice you can run these commands, assuming that you have a
