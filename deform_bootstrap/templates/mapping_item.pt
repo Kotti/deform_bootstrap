@@ -6,8 +6,7 @@
   <label for="${field.oid}"
          tal:condition="not (field.widget.hidden or
                              field.widget.category == 'structural')">
-    ${field.title}
-    <span tal:condition="field.required"
+    ${field.title}<span tal:condition="field.required"
           class="req" id="req-${field.oid}">*</span>
   </label>
 
