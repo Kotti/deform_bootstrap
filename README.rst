@@ -29,8 +29,8 @@ form elements (see http://twitter.github.com/bootstrap/#forms).
 To use it with ``deform_bootstrap`` you can simply pass ``input_prepend``
 or ``input_append`` as keyword arguments to the widget constructor in your
 ``colander.Schema`` subclass::
-
-class PersonSchema(colander.Schema):
+  
+  class PersonSchema(colander.Schema):
     weight = colander.SchemaNode(colander.Integer(),
                                  title=u"Gewicht",
                                  widget=deform.widget.TextInputWidget(input_append="kg",
