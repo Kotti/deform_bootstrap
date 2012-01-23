@@ -21,22 +21,6 @@ This will put the templates in ``deform_bootstrap/templates`` into the
 `deform search path
 <http://docs.pylonsproject.org/projects/deform/en/latest/templates.html>`_.
 
-input_prepend / input_append
-----------------------------
-
-Bootstrap has a nice feature to prepend/append text to input[type=text]
-form elements (see http://twitter.github.com/bootstrap/#forms).
-To use it with ``deform_bootstrap`` you can simply pass ``input_prepend``
-or ``input_append`` as keyword arguments to the widget constructor in your
-``colander.Schema`` subclass::
-  
-  class PersonSchema(colander.Schema):
-    weight = colander.SchemaNode(colander.Integer(),
-                                 title=u"Gewicht",
-                                 widget=deform.widget.TextInputWidget(input_append="kg",
-                                                                      css_class="span1"))
-
-
 Work in progress
 ================
 
@@ -61,3 +45,24 @@ looks in practice you can run these commands, assuming that you have a
   $ bin/pserve demo.ini
 
 You should now be able to access the demo site at http://0.0.0.0:8521
+
+API
+===
+
+input_prepend / input_append
+----------------------------
+
+Bootstrap has a nice feature to prepend/append text to input[type=text]
+form elements (see http://twitter.github.com/bootstrap/#forms).
+To use it with ``deform_bootstrap`` you can simply pass ``input_prepend``
+or ``input_append`` as keyword arguments to the widget constructor in your
+``colander.Schema`` subclass::
+  
+  class PersonSchema(colander.Schema):
+      weight = colander.SchemaNode(
+          colander.Integer(),
+          title=u"Weight",
+          widget=deform.widget.TextInputWidget(
+              input_append="kg",
+              css_class="span1",
+          ))
