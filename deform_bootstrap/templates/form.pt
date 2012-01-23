@@ -19,6 +19,7 @@
         <span class="errorMsgLbl" i18n:translate="">
           There was a problem with your submission
         </span>
+        <br />
         <span class="errorMsg" i18n:translate="">
           Errors have been highlighted below
         </span>
