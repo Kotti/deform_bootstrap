@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-0.1a3 - Unreleased
+0.1a3 - 2012-02-03
 ------------------
 
 - Changes to support Bootstrap 2.0.
