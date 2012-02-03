@@ -4,6 +4,8 @@ CHANGES
 0.1a3 - Unreleased
 ------------------
 
+- Changes to support Bootstrap 2.0.
+
 - Added support for Bootstrap's feature to prepend/append text to
   ``input[type=text]`` via input_prepend/input_append keyword
   arguments to ``deform.Widget`` constructor.
