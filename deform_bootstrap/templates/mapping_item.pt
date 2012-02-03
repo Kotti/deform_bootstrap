@@ -19,27 +19,28 @@
          tal:omit-tag="not (input_prepend or input_append)"
          class="${input_prepend and 'input-prepend' or input_append and 'input-append'}">
 
-    <span class="add-on" tal:condition="input_prepend">${input_prepend}</span>
+      <span class="add-on" tal:condition="input_prepend">${input_prepend}</span>
 
-    <span tal:replace="structure field.serialize(cstruct)" />
+      <span tal:replace="structure field.serialize(cstruct)" />
 
-    <span class="add-on" tal:condition="input_append">${input_append}</span>
+      <span class="add-on" tal:condition="input_append">${input_append}</span>
 
-    <span class="help-inline"
-          tal:condition="field.error and not field.widget.hidden and not field.typ.__class__.__name__=='Mapping'">
-      <span
-          tal:define="errstr 'error-%s' % field.oid"
-          tal:repeat="msg field.error.messages()"
-          tal:attributes="id repeat.msg.index==0 and errstr or
-                          ('%s-%s' % (errstr, repeat.msg.index))"
-          class="${field.widget.error_class}">
-        <tal:block i18n:translate="">${msg}</tal:block>
+      <span class="help-inline"
+            tal:condition="field.error and not field.widget.hidden and not field.typ.__class__.__name__=='Mapping'">
+        <span
+            tal:define="errstr 'error-%s' % field.oid"
+            tal:repeat="msg field.error.messages()"
+            tal:attributes="id repeat.msg.index==0 and errstr or
+                            ('%s-%s' % (errstr, repeat.msg.index))"
+            class="${field.widget.error_class}">
+          <tal:block i18n:translate="">${msg}</tal:block>
+        </span>
       </span>
-    </span>
 
-    <span class="help-block" tal:condition="field.description">
-      ${field.description}
-    </span>
+      <span class="help-block" tal:condition="field.description">
+        ${field.description}
+      </span>
+    </div>
 
   </div>
 </div>
