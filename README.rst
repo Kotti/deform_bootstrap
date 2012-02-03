@@ -53,7 +53,7 @@ input_prepend / input_append
 ----------------------------
 
 Bootstrap has a nice feature to prepend/append text to input[type=text]
-form elements (see http://twitter.github.com/bootstrap/#forms).
+form elements (see http://twitter.github.com/bootstrap/base-css.html#forms).
 To use it with ``deform_bootstrap`` you can simply pass ``input_prepend``
 or ``input_append`` as keyword arguments to the widget constructor in your
 ``colander.Schema`` subclass::
