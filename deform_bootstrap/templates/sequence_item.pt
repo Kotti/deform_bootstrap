@@ -1,0 +1,24 @@
+<li tal:attributes="class field.error and field.widget.error_class"
+    tal:omit-tag="field.widget.hidden"
+    title="${field.description}" i18n:domain="deform">
+  <!-- sequence_item -->
+
+  <a class="close"
+        id="${field.oid}-close"
+        tal:condition="not field.widget.hidden"
+        title="Remove"
+        i18n:attributes="title"
+        onclick="javascript:deform.removeSequenceItem(this);">&times;</a>
+
+  <span tal:replace="structure field.serialize(cstruct)"/>
+
+
+  <tal:errors
+     condition="field.error and not field.widget.hidden"
+     define="errstr 'error-%s' % field.oid"
+     repeat="msg field.error.messages()"><p tal:condition="msg"
+       id="${errstr if repeat.msg.index==0 else '%s-%s' % (errstr, repeat.msg.index)}"
+       class="${field.widget.error_class}" i18n:translate="">${msg}</p></tal:errors>
+
+  <!-- /sequence_item -->
+</li>
