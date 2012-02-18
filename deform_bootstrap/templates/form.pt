@@ -15,19 +15,18 @@
     <input type="hidden" name="_charset_" />
     <input type="hidden" name="__formid__" value="${field.formid}"/>
 
-    <div class="clearfix alert-message error" tal:condition="field.error">
-      <p>
-        <span class="errorMsgLbl" i18n:translate="">
-          There was a problem with your submission
-        </span>
-        <br />
-        <span class="errorMsg" i18n:translate="">
-          Errors have been highlighted below
-        </span>
-      </p>
+    <div class="alert alert-block alert-error" tal:condition="field.error">
+      <h4 class="alert-heading">Error!</h4>
+      <span class="errorMsgLbl" i18n:translate="">
+        There was a problem with your submission
+      </span>
+      <br />
+      <span class="errorMsg" i18n:translate="">
+        Errors have been highlighted below
+      </span>
       <p class="errorMsg">${field.errormsg}</p>
     </div>
-    
+
     <div
         tal:define="rndr field.renderer;
                     tmpl field.widget.item_template"
