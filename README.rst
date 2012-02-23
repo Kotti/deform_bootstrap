@@ -25,6 +25,15 @@ This will put the templates in ``deform_bootstrap/templates`` into the
 `deform search path
 <http://docs.pylonsproject.org/projects/deform/en/latest/templates.html>`_.
 
+Running Selenium tests
+======================
+
+Follow the instructions in ``deformdemo`` to install Selenium.  Then
+install deform_bootstrap in your virtualenv and from within
+the ``deform_bootstrap`` package run this command:
+
+  $ bin/python deform_bootstrap/demo/test.py
+
 Work in progress
 ================
 
