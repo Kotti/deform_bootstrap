@@ -27,15 +27,23 @@
   </head>
   
   <body id="public">
-
-    <div class="container-fluid">
-      <div class="page-header">
-        <h1>Deform Bootstrap Demo</h1>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">
+            Deform Bootstrap Demo
+          </a>
+        </div>
       </div>
-      <div class="row-fluid">
+    </div>
+    <div class="container">
+      <div class="page-header">
+        <h1></h1>
+      </div>
+      <div class="row">
 
         <div tal:condition="showmenu" class="span3">
-          <ul>
+          <ul class="nav nav-list">
             <li tal:repeat="(title, name) demos"><a href="${name}/">${title}</a></li>
           </ul>
         </div>

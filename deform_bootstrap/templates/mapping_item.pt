@@ -1,18 +1,19 @@
-<div class="control-group ${field.error and 'error' or ''}"
+<div tal:define="structural field.widget.hidden or
+                            field.widget.category == 'structural'"
+     class="control-group ${field.error and 'error' or ''}"
      id="item-${field.oid}"
-     tal:omit-tag="field.widget.hidden"
+     tal:omit-tag="structural"
      i18n:domain="deform">
 
   <label for="${field.oid}"
          class="control-label"
-         tal:condition="not (field.widget.hidden or
-                             field.widget.category == 'structural')">
+         tal:condition="not structural">
     ${field.title}<span tal:condition="field.required"
           class="req" id="req-${field.oid}">*</span>
   </label>
 
   <div class="controls"
-       tal:omit-tag="field.widget.hidden">
+       tal:omit-tag="structural">
 
     <div tal:define="input_prepend field.widget.input_prepend | None;
                      input_append field.widget.input_append  | None;"
