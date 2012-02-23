@@ -12,13 +12,10 @@
     <link rel="stylesheet" href="${app_url}/pygments.css" type="text/css" />
     <link rel="stylesheet" href="${app_url}/static-deform_boostrap/bootstrap.min.css" type="text/css" media="screen" charset="utf-8" />
 
-    <!-- Widget requirements -->
-    <tal:block repeat="reqt css_links|[]">
-      <link rel="stylesheet" href="${static}/${reqt}" type="text/css" />
-    </tal:block>
-    <tal:block repeat="reqt js_links|[]">
-      <script type="text/javascript" src="${static}/${reqt}"></script>
-    </tal:block>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="${request.static_url('deform:static/scripts/deform.js')}" type="text/javascript"></script>    
+    <script src="${app_url}/static-deform_boostrap/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${app_url}/static-deform_boostrap/bootstrap-typeahead.js" type="text/javascript"></script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
