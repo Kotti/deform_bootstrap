@@ -27,7 +27,7 @@
   </ul>
 
   <a href="#"
-     class="btn"
+     class="btn deformSeqAdd"
      id="${field.oid}-seqAdd"
      onclick="javascript: return deform.appendSequenceItem(this);">
     <small id="${field.oid}-addtext">${add_subitem_text}</small>
