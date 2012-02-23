@@ -2,6 +2,7 @@
                             field.widget.category == 'structural'"
      class="control-group ${field.error and 'error' or ''}"
      id="item-${field.oid}"
+     title="${field.description}"
      tal:omit-tag="structural"
      i18n:domain="deform">
 

@@ -23,5 +23,5 @@ def includeme(config):
     base_includeme(config)
     config.override_asset(
         to_override='deformdemo:templates/main.pt',
-        override_with='deform_bootstrap:deformdemo-main.pt',
+        override_with='deform_bootstrap:demo/main.pt',
         )
