@@ -1,7 +1,6 @@
+<metal:block define-macro="master">
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      metal:define-macro="master"
-      tal:define="app_url request.application_url;
+<html tal:define="app_url request.application_url;
                   static app_url + '/static'">
 
   <head>
@@ -45,3 +44,4 @@
   </body>
 
 </html>
+</metal:block>
