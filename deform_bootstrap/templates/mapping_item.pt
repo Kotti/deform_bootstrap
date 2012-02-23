@@ -35,7 +35,7 @@
             tal:attributes="id repeat.msg.index==0 and errstr or
                             ('%s-%s' % (errstr, repeat.msg.index))"
             class="${field.widget.error_class}">
-          <tal:block i18n:translate="">${msg}</tal:block>
+          ${msg}
         </span>
       </span>
 
