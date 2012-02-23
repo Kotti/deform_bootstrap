@@ -17,7 +17,7 @@ search_path = (
 def translator(term):
     return get_localizer(get_current_request()).translate(term)
 
-zpt_renderer = ZPTRendererFactory(search_path, translator)
+zpt_renderer = ZPTRendererFactory(search_path, translator=translator)
 
 def includeme(config):
     base_includeme(config)
