@@ -10,13 +10,7 @@
       Deform Bootstrap Demo Site
     </title>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
     <link rel="stylesheet" href="${app_url}/static-deform_boostrap/bootstrap.min.css" type="text/css" media="screen" charset="utf-8" />
-    <link rel="stylesheet" href="${app_url}/pygments.css" type="text/css" />
 
     <!-- Widget requirements -->
     <tal:block repeat="reqt css_links|[]">
@@ -29,19 +23,19 @@
   
   <body id="public">
 
-    <div class="content">
+    <div class="container-fluid">
       <div class="page-header">
         <h1>Deform Bootstrap Demo</h1>
       </div>
-      <div class="row">
+      <div class="row-fluid">
 
-        <div tal:condition="showmenu" class="menu span4">
+        <div tal:condition="showmenu" class="span3">
           <ul>
             <li tal:repeat="(title, name) demos"><a href="${name}/">${title}</a></li>
           </ul>
         </div>
 
-        <div class="${showmenu and 'span12' or 'span16'}">
+        <div class="${showmenu and 'span9' or 'span12'}">
           <span metal:define-slot="main"/>
         </div>
 
