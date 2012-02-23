@@ -1,5 +1,7 @@
 <fieldset i18n:domain="deform">
 
+  <input type="hidden" name="__start__" value="${field.name}:mapping"/>
+
   <legend tal:condition="field.title">${field.title}</legend>
 
   <div class="clearfix alert-message error" tal:condition="field.errormsg">
@@ -12,8 +14,6 @@
   <div tal:condition="field.description">
     ${field.description}
   </div>
-
-  <input type="hidden" name="__start__" value="${field.name}:mapping"/>
 
   <div
       tal:define="rndr field.renderer;
