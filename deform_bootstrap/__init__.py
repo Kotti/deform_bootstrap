@@ -12,4 +12,4 @@ def add_search_path():
 
 def includeme(config):
     add_search_path()
-    config.add_static_view('static-deform_boostrap', 'deform_bootstrap:static')
+    config.add_static_view('static-deform_bootstrap', 'deform_bootstrap:static')
