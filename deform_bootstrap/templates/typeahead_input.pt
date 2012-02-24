@@ -1,0 +1,17 @@
+<span tal:omit-tag="">
+  <input type="text"
+    name="${field.name}"
+    value="${cstruct}"
+    data-provide="typeahead"
+    tal:attributes="size field.widget.size;
+      class field.widget.css_class"
+    id="${field.oid}"/>
+  <script tal:condition="field.widget.source" type="text/javascript">
+    deform.addCallback(
+      '${field.oid}',
+      function (oid) {
+          $('#' + oid).typeahead(${options});
+      }
+    );
+  </script>
+</span>
