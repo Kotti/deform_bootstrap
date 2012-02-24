@@ -1,9 +1,9 @@
 import json
 from colander import null
-from deform.widget import Widget
+from deform.widget import AutocompleteInputWidget
 
 
-class TypeaheadInputWidget(Widget):
+class TypeaheadInputWidget(AutocompleteInputWidget):
     """
     Renders an ``<input type="text"/>`` widget which provides
     autocompletion via a list of values using bootstrap's typeahead plugin
@@ -59,12 +59,3 @@ class TypeaheadInputWidget(Widget):
             cstruct=cstruct,
             field=field,
             options=json.dumps(options))
-
-    def deserialize(self, field, pstruct):
-        if pstruct is null:
-            return null
-        if self.strip:
-            pstruct = pstruct.strip()
-        if not pstruct:
-            return null
-        return pstruct
