@@ -6,6 +6,7 @@ from deformdemo import test
 
 browser = None
 
+
 def patch_test_render_default(self):
     browser.open(self.url)
     browser.wait_for_page_to_load("30000")
@@ -18,6 +19,7 @@ def patch_test_render_default(self):
     self.assertEqual(browser.get_attribute("deformField1@name"), 'field')
     self.assertEqual(browser.get_value("deformField1"), u'☃')
     self.assertEqual(browser.get_text('css=#captured'), 'None')
+
 
 def _patch():
     test.UnicodeEverywhereTests.test_render_default = patch_test_render_default
