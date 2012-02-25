@@ -25,26 +25,16 @@ This will put the templates in ``deform_bootstrap/templates`` into the
 `deform search path
 <http://docs.pylonsproject.org/projects/deform/en/latest/templates.html>`_.
 
-Running Selenium tests
-======================
-
-Follow the instructions in ``deformdemo`` to install Selenium.  Then
-install deform_bootstrap in your virtualenv and from within
-the ``deform_bootstrap`` package run this command:
-
-  $ bin/python deform_bootstrap/demo/test.py
-
 Work in progress
 ================
 
-Work still needs to be done on individual widget templates.  Some
-widgets include markup with ``<ul>`` and ``<li>`` elements that don't
-work very well with Bootstrap.  Contributions the in form of markup
-changes and style corrections are most welcome.
+Work still needs to be done on individual widget templates.
+Contributions the in form of markup changes and style corrections are
+most welcome.
 
-``deform_bootstrap`` currently passes around 95% of the `deformdemo
-<http://deformdemo.repoze.org/>`_ tests.  (The remaining five percent
-are probably related to a setup issue with the the tests.)
+``deform_bootstrap`` passes 100% of the `deformdemo
+<http://deformdemo.repoze.org/>`_ tests.  Please do run the Selenium
+tests before submitting a patch.
 
 If you want to quickly try out ``deform_bootstrap`` and see how it
 looks in practice you can run these commands, assuming that you have a
@@ -58,6 +48,15 @@ looks in practice you can run these commands, assuming that you have a
   $ bin/pserve demo.ini
 
 You should now be able to access the demo site at http://0.0.0.0:8521
+
+Running Selenium tests
+======================
+
+Follow the instructions in ``deformdemo`` to install Selenium.  Then
+install deform_bootstrap in your virtualenv and from within
+the ``deform_bootstrap`` package run this command:
+
+  $ bin/python deform_bootstrap/demo/test.py
 
 API
 ===
