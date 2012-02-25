@@ -36,6 +36,13 @@ most welcome.
 <http://deformdemo.repoze.org/>`_ tests.  Please do run the Selenium
 tests before submitting a patch.
 
+However, bootstrap requires a newer version of jquery than deform ships
+with by default. This in turn would require a newer version of jquery.form
+(> 2.43) which unfortunately is backward incompatible in its ajax handling.
+Thus, deform_bootstrap cannot currently support deform's ``use_ajax`` feature.
+The corresponding selenium tests have therefore been disabled until deform
+catches up. Note, that you can still use jquery.form itself.
+
 If you want to quickly try out ``deform_bootstrap`` and see how it
 looks in practice you can run these commands, assuming that you have a
 `virtualenv <http://pypi.python.org/pypi/virtualenv>`_ set up in your
