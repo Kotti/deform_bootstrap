@@ -21,8 +21,14 @@ def patch_test_render_default(self):
     self.assertEqual(browser.get_text('css=#captured'), 'None')
 
 
+def patch_disable_test(self):
+    pass
+
+
 def _patch():
     test.UnicodeEverywhereTests.test_render_default = patch_test_render_default
+    test.RedirectingAjaxFormTests.test_submit_success = patch_disable_test
+    test.AjaxFormTests.test_submit_success = patch_disable_test
 
 if __name__ == '__main__':
     test.setUpModule()
