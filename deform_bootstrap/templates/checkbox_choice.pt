@@ -1,0 +1,15 @@
+<input type="hidden" name="__start__" value="${field.name}:sequence"/>
+  <tal:loop tal:repeat="choice field.widget.values">
+    <tal:def tal:define="(value, title) choice">
+        <label class="checkbox" for="${field.oid}-${repeat.choice.index}">
+          <input tal:attributes="checked value in cstruct;
+                                 class field.widget.css_class"
+                 type="checkbox"
+                 name="checkbox"
+                 value="${value}"
+                 id="${field.oid}-${repeat.choice.index}"/>
+          ${title}
+        </label>
+    </tal:def>
+  </tal:loop>
+<input type="hidden" name="__end__" value="${field.name}:sequence"/>
