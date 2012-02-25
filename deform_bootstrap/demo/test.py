@@ -2,7 +2,8 @@
 
 import unittest
 
-from deformdemo import test
+from deformdemo import test as test_deformdemo
+from deform_bootstrap.demo import test_typeahead
 
 browser = None
 
@@ -25,16 +26,17 @@ def patch_disable_test(self):
     pass
 
 
-def _patch():
-    test.UnicodeEverywhereTests.test_render_default = patch_test_render_default
-    test.RedirectingAjaxFormTests.test_submit_success = patch_disable_test
-    test.AjaxFormTests.test_submit_success = patch_disable_test
+def _patch_deform_tests():
+    test_deformdemo.UnicodeEverywhereTests.test_render_default = patch_test_render_default
+    test_deformdemo.RedirectingAjaxFormTests.test_submit_success = patch_disable_test
+    test_deformdemo.AjaxFormTests.test_submit_success = patch_disable_test
 
 if __name__ == '__main__':
-    test.setUpModule()
-    browser = test.browser
-    _patch()
-    try:
-        unittest.main(test)
-    finally:
-        test.tearDownModule()
+    _patch_deform_tests()
+    for test in test_deformdemo, test_typeahead:
+        test.setUpModule()
+        browser = test.browser
+        try:
+            unittest.main(test)
+        finally:
+            test.tearDownModule()
