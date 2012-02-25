@@ -1,8 +1,10 @@
 CHANGES
 =======
 
-0.1 - Unreleased
-----------------
+0.1a5 - 2012-02-09
+------------------
+
+- All deformdemo Selenium tests passing.
 
 - Add sequence templates.
 
