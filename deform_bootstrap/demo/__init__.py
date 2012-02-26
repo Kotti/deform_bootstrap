@@ -10,6 +10,7 @@ from deformdemo import demonstrate, DeformDemo
 
 from deform_bootstrap import includeme as base_includeme
 from deform_bootstrap.widget import TypeaheadInputWidget
+from deform_bootstrap.widget import DateTimeInputWidget
 
 # Code here exists solely to allow the running of deformdemo.  Use the
 # 'includeme' from the __init__.py or similar in your production code,
@@ -52,6 +53,18 @@ class DeformBootstrapDemo(DeformDemo):
                     source=[u'Foo', u'Bar', u'Baz'],
                     items=4),
                 description='Enter some text')
+        schema = Schema()
+        form = deform.Form(schema, buttons=('submit',))
+        return self.render_form(form)
+
+    @view_config(renderer='deformdemo:templates/form.pt', name='datetime_input')
+    @demonstrate('DateTime Input Widget')
+    def datetime_input(self):
+        class Schema(colander.Schema):
+            text = colander.SchemaNode(
+                colander.DateTime(),
+                widget=DateTimeInputWidget(),
+                description='Enter date and time')
         schema = Schema()
         form = deform.Form(schema, buttons=('submit',))
         return self.render_form(form)
