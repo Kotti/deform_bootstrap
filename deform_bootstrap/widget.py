@@ -68,7 +68,6 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
     requirements = ()
 
     def serialize(self, field, cstruct, readonly=False):
-        import pdb; pdb.set_trace()
         if cstruct is null:
             _date = ''
             _time = ''
@@ -81,7 +80,6 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
                               date=_date, time=_time)
 
     def deserialize(self, field, pstruct):
-        import pdb; pdb.set_trace()
         if pstruct is null:
             return null
         else:
