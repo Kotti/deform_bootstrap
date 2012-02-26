@@ -1,7 +1,7 @@
 import json
-from colander import null
+from colander import null, Invalid
 from deform.widget import AutocompleteInputWidget
-
+from deform.widget import DateTimeInputWidget as DateTimeInputWidgetBase
 
 class TypeaheadInputWidget(AutocompleteInputWidget):
     """
@@ -59,3 +59,44 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
             cstruct=cstruct,
             field=field,
             options=json.dumps(options))
+
+
+class DateTimeInputWidget(DateTimeInputWidgetBase):
+
+    template = 'splitted_datetimeinput'
+    readonly_template = 'readonly/textinput'
+    requirements = ()
+
+    def serialize(self, field, cstruct, readonly=False):
+        import pdb; pdb.set_trace()
+        if cstruct is null:
+            _date = ''
+            _time = ''
+        else:
+            if len(cstruct) == 25: # strip timezone if it's there
+                cstruct = cstruct[:-6]
+            _date, _time = cstruct.split('T')
+        template = readonly and self.readonly_template or self.template
+        return field.renderer(template, field=field, cstruct=cstruct,
+                              date=_date, time=_time)
+
+    def deserialize(self, field, pstruct):
+        import pdb; pdb.set_trace()
+        if pstruct is null:
+            return null
+        else:
+            _date = pstruct['date'].strip()
+            _time = pstruct['time'].strip()
+            
+            if (not _date and not _time):
+                return null
+
+            if not _date:
+                raise Invalid(field.schema, _('Incomplete date'), result)
+            
+            if not _time:
+                _time = "00:00:00"
+            
+            result = ' '.join([_date, _time])
+
+            return result

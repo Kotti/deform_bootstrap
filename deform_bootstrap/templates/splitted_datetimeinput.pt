@@ -1,0 +1,26 @@
+<span i18n:domain="deform" tal:omit-tag="">
+<input type="hidden" name="__start__" value="${field.name}:mapping"/>
+<div class="row">
+    <div class="input-prepend span3">
+      <span class="add-on" i18n:translate="">Date</span>
+      <input type="text" name="date" value="${date}"
+             class="span2 ${field.widget.css_class}"
+             id="${field.oid}-date"/>
+    </div>
+    <div class="input-prepend span3">
+      <span class="add-on" i18n:translate="">Time</span>
+      <input type="text" name="time" value="${time}"
+             class="span2 ${field.widget.css_class}"
+             id="${field.oid}-time"/>
+    </div>
+    <script type="text/javascript">
+      deform.addCallback(
+        '${field.oid}',
+        function(oid) {
+            $('#' + oid + '-date').datepicker({dateFormat: 'yy-mm-dd'});
+        }
+      );
+    </script>
+</div>
+<input type="hidden" name="__end__" value="${field.name}:mapping"/>
+</span>
