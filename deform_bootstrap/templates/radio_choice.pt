@@ -1,0 +1,17 @@
+<input type="hidden" name="__start__" value="${field.name}:rename"/>
+<tal:loop tal:repeat="choice field.widget.values">
+  <tal:def tal:define="(value, title) choice">
+    <div class="deformSet-item">
+      <label class="radio" for="${field.oid}-${repeat.choice.index}">
+        <input tal:attributes="checked value == cstruct;
+                               class field.widget.css_class"
+               type="radio"
+               name="${field.oid}"
+               value="${value}"
+               id="${field.oid}-${repeat.choice.index}"/>
+        ${title}
+      </label>
+    </div>
+  </tal:def>
+</tal:loop>
+<input type="hidden" name="__end__"/>
