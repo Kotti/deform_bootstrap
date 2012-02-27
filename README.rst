@@ -65,10 +65,11 @@ Deform depends on ``jQueryUI`` for these wigdgets:
  - DateInputWidget
  - DateTimeInputWidget
 
-If you don't use any of these, you can skip the remainder of this section
-and just delete ``jQueryUI`` from your CSS and JS imports.  Otherwise you'll
-need to add ``bootstrap-typeahead.js`` and/or ``bootstrap-datepicker.js``
-to your JS includes.
+``deform_bootstrap`` comes with widgets that replace these, and that are
+compatible with Bootstrap. If you don't use any of these, you can skip
+the remainder of this section and just delete ``jQueryUI`` from your CSS
+and JS imports.  Otherwise you'll need to add ``bootstrap-typeahead.js``
+and/or ``bootstrap-datepicker.js`` to your JS includes.
 
 You can then use deform_bootstrap's TypeaheadInputWidget as a drop in
 replacement for deform's AutocompleteInputWidget.
