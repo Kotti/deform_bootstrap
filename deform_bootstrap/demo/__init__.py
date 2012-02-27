@@ -1,7 +1,10 @@
+import datetime
 import colander
 import deform
 
+from colander import iso8601
 from deform import ZPTRendererFactory
+from deform.i18n import _
 from pkg_resources import resource_filename
 from pyramid.i18n import get_localizer
 from pyramid.threadlocal import get_current_request
@@ -61,10 +64,15 @@ class DeformBootstrapDemo(DeformDemo):
     @demonstrate('DateTime Input Widget')
     def datetime_input(self):
         class Schema(colander.Schema):
-            text = colander.SchemaNode(
+            date_time = colander.SchemaNode(
                 colander.DateTime(),
-                widget=DateTimeInputWidget(),
-                description='Enter date and time')
+                validator=colander.Range(
+                    min=datetime.datetime(
+                        2010, 5, 5, 12, 30, tzinfo=iso8601.Utc()),
+                    min_err=_('${val} is earlier than earliest datetime ${min}')),
+                widget=DateTimeInputWidget()
+                )
         schema = Schema()
         form = deform.Form(schema, buttons=('submit',))
-        return self.render_form(form)
+        when = datetime.datetime(2010, 5, 6, 12)
+        return self.render_form(form, appstruct={'date_time': when})

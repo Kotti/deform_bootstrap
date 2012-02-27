@@ -38,6 +38,8 @@ def _patch_deform_tests():
     test_deformdemo.DateInputWidgetTests.test_submit_tooearly = patch_disable_test
     test_deformdemo.DateInputWidgetTests.test_submit_success = patch_disable_test
     test_deformdemo.SequenceOfDateInputs.test_submit_one_filled = patch_disable_test
+    test_deformdemo.DateTimeInputWidgetTests.test_submit_tooearly = patch_disable_test
+    test_deformdemo.DateTimeInputWidgetTests.test_submit_success = patch_disable_test
 
 if __name__ == '__main__':
     _patch_deform_tests()
