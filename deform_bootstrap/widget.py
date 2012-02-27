@@ -74,7 +74,7 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
             _date = ''
             _time = ''
         else:
-            if len(cstruct) == 25: # strip timezone if it's there
+            if len(cstruct) == 25:  # strip timezone if it's there
                 cstruct = cstruct[:-6]
             try:
                 _date, _time = cstruct.split('T')
