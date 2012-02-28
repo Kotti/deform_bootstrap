@@ -6,33 +6,26 @@
                  max_len field.widget.max_len or 100000;
                  now_len len(subfields);
                  prototype field.widget.prototype(field)">
-
   <!-- sequence -->
-
-  <input type="hidden" name="__start__" value="${field.name}:sequence"
-         class="deformProto" 
+  <input type="hidden" name="__start__"
+         value="${field.name}:sequence"
+         class="deformProto"
          tal:attributes="prototype prototype"/>
-
-  <ul>
-
+  <div class="deformSeqContainer">
     <div tal:repeat="tup subfields"
          tal:replace="structure rndr(item_tmpl, field=tup[1], cstruct=tup[0],
                       parent=field)"/>
-
     <span class="deformInsertBefore"
           tal:attributes="min_len min_len;
                           max_len max_len;
                           now_len now_len"></span>
-
-  </ul>
-
+  </div>
   <a href="#"
      class="btn deformSeqAdd"
      id="${field.oid}-seqAdd"
      onclick="javascript: return deform.appendSequenceItem(this);">
     <small id="${field.oid}-addtext">${add_subitem_text}</small>
   </a>
-
   <script type="text/javascript">
      deform.addCallback(
        '${field.oid}',
@@ -43,9 +36,6 @@
        }
      )
   </script>
-
   <input type="hidden" name="__end__" value="${field.name}:sequence"/>
-
   <!-- /sequence -->
-
 </div>

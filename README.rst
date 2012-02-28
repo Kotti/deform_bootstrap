@@ -56,8 +56,11 @@ looks in practice you can run these commands, assuming that you have a
 
 You should now be able to access the demo site at http://0.0.0.0:8521
 
-Getting rid of jQueryUI
-=======================
+Getting rid of legacy stuff
+===========================
+
+jQueryUI
+--------
 
 Deform depends on ``jQueryUI`` for these wigdgets:
 
@@ -89,6 +92,21 @@ to a shiny new look for DateInputWidgets.  For DateTimeInputWidgets you'll
 have to replace your existing imports.  This is as easy as replacing
 ``from deform.widget import DateTimeInputWidget`` with
 ``from deform_bootstrap.widget import DateTimeInputWidget`` in your code.
+
+<ul> / <li> markup
+------------------
+
+Deform uses <ul> / <li> markup for rendering sequences.  Although one can
+argue, that this is semanticaly correct, it doesn't make much sense in the
+context of form rendering and requires quite some additional CSS to produce
+visually appealing results.  Therefore ``deform_bootstrap`` removes all list
+markup and generates nice forms with no additional CSS required.
+
+In order to make this work with not only with fixed length sequences, but
+also variable length sequences, 2 functions in ``deform.js`` needs to be
+patched.  This can be done by simply adding the provided
+``deform_bootstrap.js`` to your JS requirements.  If your application doesn't
+use variable length sequences, you can safely skip this step.
 
 Running Selenium tests
 ======================
