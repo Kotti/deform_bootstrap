@@ -4,14 +4,13 @@ deform_bootstrap
 
 ``deform_bootstrap`` provides `Bootstrap
 <http://twitter.github.com/bootstrap/>`_ compatible templates for the
-`deform form library <http://pypi.python.org/pypi/deform/0.9.3>`_.
-
-Currently, it only overrides a handful of templates to make deform
-forms look OK with bootstrap.  Eventually, this package might grow to
-contain widgets for Bootstrap.
+`deform form library <http://pypi.python.org/pypi/deform/0.9.4>`_.
 
 How to use it
 =============
+
+I just downloaded this and wanna use it
+---------------------------------------
 
 In your Paste Deploy configuration file (e.g. ``development.ini``) add
 ``deform_bootstrap`` to the list of ``pyramid_includes``, or add a
@@ -25,30 +24,15 @@ This will put the templates in ``deform_bootstrap/templates`` into the
 `deform search path
 <http://docs.pylonsproject.org/projects/deform/en/latest/templates.html>`_.
 
-Work in progress
-================
-
-Work still needs to be done on individual widget templates.
-Contributions the in form of markup changes and style corrections are
-most welcome.
-
-``deform_bootstrap`` passes 100% of the `deformdemo
-<http://deformdemo.repoze.org/>`_ tests.  Please do run the Selenium
-tests before submitting a patch.
-
-However, bootstrap requires a newer version of jquery than deform ships
-with by default. This in turn would require a newer version of jquery.form
-(> 2.43) which unfortunately is backward incompatible in its ajax handling.
-Thus, deform_bootstrap cannot currently support deform's ``use_ajax`` feature.
-The corresponding selenium tests have therefore been disabled until deform
-catches up. Note, that you can still use jquery.form itself.
+I want to try it before using
+-----------------------------
 
 If you want to quickly try out ``deform_bootstrap`` and see how it
 looks in practice you can run these commands, assuming that you have a
 `virtualenv <http://pypi.python.org/pypi/virtualenv>`_ set up in your
 ``deform_bootstrap`` directory::
 
-  $ git clone https://github.com/Pylons/deformdemo.git
+  $ git clone https://github.com/pyfidelity/deformdemo.git
   $ cd deformdemo
   $ ../bin/python setup.py develop
   $ cd ..
@@ -56,8 +40,8 @@ looks in practice you can run these commands, assuming that you have a
 
 You should now be able to access the demo site at http://0.0.0.0:8521
 
-Getting rid of legacy stuff
-===========================
+Additional widgets / getting rid of legacy stuff
+================================================
 
 jQueryUI
 --------
@@ -108,8 +92,82 @@ patched.  This can be done by simply adding the provided
 ``deform_bootstrap.js`` to your JS requirements.  If your application doesn't
 use variable length sequences, you can safely skip this step.
 
+Static resources
+================
+
+``deform_bootstrap`` comes with a bunch of static resources, which might
+confuse you.  Fortunately most of them are just needed to pass *all the* tests
+and most most of them (if any) won't be needed in your ``deform_bootstrap``
+based application.
+
+CSS
+---
+
+``deform_bootstrap.css``
+  This file contains the complete Bootstrap 2.0.1 CSS plus additional
+  styles for the datepicker widget (see above).  You may use it for your
+  application (great for initial development), but might also want to consider
+  rolling your own customized version for deployment.
+
+JS
+--
+
+``bootstrap_datepicker.js``
+  Only needed if you want to use the *native* bootstrap datepicker widget
+  (see above).
+
+``bootstrap_typeahead.js``
+  Only needed if you want to use the *native* bootstrap datepicker widget
+  (see above).
+
+``bootstrap.min.js``
+  Only needed as a direct dependency of the ``bootstrap_XXX.js`` files.
+
+``deform_bootstrap.js``
+  Only needed as if you want to use *variable length sequences*
+  (see "<ul> / <li> markup" above).
+
+``jquery-x.x.x.min.js``
+  Only needed if you want to use any of the other JS resources.
+
+``jquery-ui-x.x.x.custom.min.js``
+  Only needed if prefer using deform's orinial ``AutocompleteInputWidget``
+  over deform_bootstrap's ``TypeaheadInputWidget`` or deform's
+  ``DateTimeInputWidget`` over deform_bootstrap's *native* version
+  (see above).
+
+``jquery-ui-timepicker-addon-x.x.x.js``
+  Same as for ``jquery-ui-x.x.x.custom.min.js``.
+
+``jquery.form-2.96.js``
+  Only needed if you want to use ``use_ajax=True`` with ``deform.Form``.
+
+``jquery.maskedinput-x.x.js``
+  Only needed if you want ``mask='...'`` with any of the ``deform``
+  widgets that support it.
+
+LESS / twitter_bootstrap
+------------------------
+
+Not needed at all. Only used internally to build the custom
+``deform_bootstrap.css`` with the additional datepicker styles.
+
+Information for developers / contributors
+=========================================
+
+``deform_bootstrap`` passes 100% of the `deformdemo
+<http://deformdemo.repoze.org/>`_ tests.  Please do run the Selenium
+tests before submitting a patch.
+
+However, bootstrap requires a newer version of jquery than deform ships
+with by default. This in turn would require a newer version of jquery.form
+(> 2.43) which unfortunately is backward incompatible in its ajax handling.
+Thus, deform_bootstrap cannot currently support deform's ``use_ajax`` feature.
+The corresponding selenium tests have therefore been disabled until deform
+catches up. Note, that you can still use jquery.form itself.
+
 Running Selenium tests
-======================
+----------------------
 
 Follow the instructions in ``deformdemo`` to install Selenium.  Then
 install deform_bootstrap in your virtualenv and from within
