@@ -1,8 +1,21 @@
 CHANGES
 =======
 
-0.1 - Unreleased
+0.1 - 2012-02-29
 ----------------
+
+- Add TypeAheadInputWidget (with Selenium tests).
+
+- Add DateTimeInputWidget (with "native" Bootstrap CSS/JS and Selenium tests).
+
+- Ged rid of jQueryUI legacy.
+
+- Get rid of ul/li markup legacy.
+
+- Restructure / update documentation.
+
+- Include latest versions of all JS/CSS resources, Bootstrap 2.0.1 LESS files
+  with additional datepicker widget.
 
 0.1a5 - 2012-02-09
 ------------------
