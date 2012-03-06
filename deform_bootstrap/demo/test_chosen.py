@@ -121,10 +121,7 @@ class ChosenMultipleWidgetTests(test.Base, unittest.TestCase):
         browser.click('submit')
         browser.wait_for_page_to_load("30000")
         captured = browser.get_text('css=#captured')
-        self.assertSimilarRepr(
-                captured,
-                u"{'countries': set(['EE', 'BG', 'IE'])}")
-                # XXX this is fragile. how do we properly test the results?
+        self.assertEqual(eval(captured), {'countries': set([u'EE', u'BG', u'IE'])})
 
 
 
