@@ -98,7 +98,7 @@ class DeformBootstrapDemo(DeformDemo):
                 colander.String(),
                 widget=ChosenSingleWidget(values=choices,
                                           placeholder=u'Select a country'),
-                missing=colander.null,
+                missing=colander.required,
                 )
         schema = Schema()
         form = deform.Form(schema, buttons=('submit',))
