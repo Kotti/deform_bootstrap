@@ -1,0 +1,8 @@
+/*
+ * Fixes the positioning and cursor appearance
+ * of the 'remove' icon in single selection widgets.
+ */
+.chzn-single abbr {
+  border-bottom: none;
+  cursor: pointer;
+}

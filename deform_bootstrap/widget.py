@@ -1,8 +1,9 @@
 import json
 from colander import null, Invalid
 from deform.i18n import _
-from deform.widget import AutocompleteInputWidget
+from deform.widget import AutocompleteInputWidget, SelectWidget, Widget
 from deform.widget import DateTimeInputWidget as DateTimeInputWidgetBase
+from deform.widget import default_resource_registry
 
 
 class TypeaheadInputWidget(AutocompleteInputWidget):
@@ -103,3 +104,27 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
             result = ' '.join([_date, _time])
 
             return result
+
+
+class ChosenSingleWidget(SelectWidget):
+    template = 'chosen_single'
+
+
+class ChosenMultipleWidget(Widget):
+    template = 'chosen_multiple'
+    values = ()
+    size = 1
+
+    def serialize(self, field, cstruct, readonly=False):
+        if cstruct in (null, None):
+            cstruct = ()
+        template = readonly and self.readonly_template or self.template
+        return field.renderer(template, field=field, cstruct=cstruct)
+
+    def deserialize(self, field, pstruct):
+        if pstruct is null:
+            return null
+        if isinstance(pstruct, basestring):
+            return (pstruct,)
+        return tuple(pstruct)
+
