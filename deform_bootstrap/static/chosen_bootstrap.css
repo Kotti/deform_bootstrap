@@ -1,0 +1,27 @@
+/*
+ * Fixes the positioning and cursor appearance
+ * of the 'remove' icon in single selection widgets.
+ */
+
+.chzn-single abbr {
+  border-bottom: none;
+  cursor: pointer;
+}
+
+/*
+ * Fix the width and positioning of chosen within inline forms.
+ * We had to pick a new class name for this.
+ */
+
+.form-inline select.i-can-haz-chzn-select {
+  min-width: 180px;
+}
+
+.form-inline select.i-can-haz-chzn-select[multiple="multiple"] {
+  min-width: 250px;
+}
+
+.form-inline .chzn-container {
+  vertical-align: middle;
+}
+

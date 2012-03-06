@@ -92,6 +92,19 @@ patched.  This can be done by simply adding the provided
 ``deform_bootstrap.js`` to your JS requirements.  If your application doesn't
 use variable length sequences, you can safely skip this step.
 
+
+Chosen by Harvest
+-----------------
+
+A progressively enhanced replacement for HTML select elements, Chosen
+implements single and multiple selection modes that offer a much better
+UX than the standard widgets.
+It has autocomplete features, placeholder support and a slick style that
+looks good either with or without Bootstrap.
+See http://harvesthq.github.com/chosen/ for documentation and examples.
+Only the jQuery version is provided by this package.
+
+
 Static resources
 ================
 
@@ -108,6 +121,13 @@ CSS
   styles for the datepicker widget (see above).  You may use it for your
   application (great for initial development), but might also want to consider
   rolling your own customized version for deployment.
+
+``jquery_chosen/chosen.css``
+  The main style for ``ChosenSingleWidget`` and ``ChosenMultipleWidget``.
+
+``chosen_bootstrap.css``
+  This file contains a small fix for conflicts between chosen and bootstrap.
+  Only needed if you make use of chosen, but harmless if you don't.
 
 JS
 --
@@ -145,6 +165,10 @@ JS
 ``jquery.maskedinput-x.x.js``
   Only needed if you want ``mask='...'`` with any of the ``deform``
   widgets that support it.
+
+``jquery_chosen/chosen.jquery.js``
+  Only needed if you use ``ChosenSingleWidget`` or ``ChosenMultipleWidget``.
+
 
 LESS / twitter_bootstrap
 ------------------------
