@@ -1,3 +1,6 @@
+/*jslint undef: true */
+/*global $: false, deform: false */
+
 (function() {
 
   deform.appendSequenceItem = function(node) {
@@ -5,9 +8,9 @@
     $oid_node = $(node).parent();
     $proto_node = $oid_node.children('.deformProto').first();
     $before_node = $oid_node.children('.deformSeqContainer').first().children('.deformInsertBefore');
-    min_len = parseInt($before_node.attr('min_len') || '0');
-    max_len = parseInt($before_node.attr('max_len') || '9999');
-    now_len = parseInt($before_node.attr('now_len') || '0');
+    min_len = parseInt($before_node.attr('min_len') || '0', 10);
+    max_len = parseInt($before_node.attr('max_len') || '9999', 10);
+    now_len = parseInt($before_node.attr('now_len') || '0', 10);
     if (now_len < max_len) {
       deform.addSequenceItem($proto_node, $before_node);
       deform.processSequenceButtons($oid_node, min_len, max_len, now_len + 1);
@@ -24,7 +27,9 @@
     if (now_len > min_len) {
       $lis.find('.deformClosebutton').addClass('deformClosebuttonActive');
     }
-    if (now_len >= max_len) return oid_node.children('.deformSeqAdd').hide();
+    if (now_len >= max_len) {
+      return oid_node.children('.deformSeqAdd').hide();
+    }
   };
 
-}).call(this);
+}.call(this));
