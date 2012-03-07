@@ -4,6 +4,9 @@ CHANGES
 0.2 - Unreleased
 ----------------
 
+- ChosenSingleWidget and ChosenMultipleWidget; includes chosen 0.9.7 [mmariani]
+
+
 0.1 - 2012-02-29
 ----------------
 

@@ -5,6 +5,7 @@ import unittest
 from deformdemo import test as test_deformdemo
 from deform_bootstrap.demo import test_typeahead
 from deform_bootstrap.demo import test_dateinput
+from deform_bootstrap.demo import test_chosen
 
 browser = None
 
@@ -43,7 +44,7 @@ def _patch_deform_tests():
 
 if __name__ == '__main__':
     _patch_deform_tests()
-    for test in test_deformdemo, test_typeahead, test_dateinput:
+    for test in test_deformdemo, test_typeahead, test_dateinput, test_chosen:
         test.setUpModule()
         browser = test.browser
         try:

@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="${app_url}/pygments.css" type="text/css" />
     <link rel="stylesheet" href="${app_url}/static-deform_bootstrap/deform_bootstrap.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="${app_url}/static-deform_bootstrap/jquery_chosen/chosen.css" type="text/css" media="screen" charset="utf-8" />
 
     <!-- Widget requirements -->
     <script src="${app_url}/static-deform_bootstrap/jquery-1.7.1.min.js" type="text/javascript"></script>
@@ -24,6 +25,7 @@
     <script src="${app_url}/static-deform_bootstrap/bootstrap.min.js" type="text/javascript"></script>
     <script src="${app_url}/static-deform_bootstrap/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="${app_url}/static-deform_bootstrap/bootstrap-typeahead.js" type="text/javascript"></script>
+    <script src="${app_url}/static-deform_bootstrap/jquery_chosen/chosen.jquery.min.js" type="text/javascript"></script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
