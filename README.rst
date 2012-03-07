@@ -2,9 +2,10 @@
 deform_bootstrap
 ================
 
-``deform_bootstrap`` provides `Bootstrap
-<http://twitter.github.com/bootstrap/>`_ compatible templates for the
-`deform form library <http://pypi.python.org/pypi/deform/0.9.4>`_.
+``deform_bootstrap`` provides `Twitter Bootstrap
+<http://twitter.github.com/bootstrap/>`_ compatible widgets, templates
+and styles for the `deform form library
+<http://pypi.python.org/pypi/deform/0.9.4>`_.
 
 How to use it
 =============
