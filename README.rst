@@ -220,3 +220,31 @@ or ``input_append`` as keyword arguments to the widget constructor in your
               input_append="kg",
               css_class="span1",
           ))
+
+bootstrap_form_style
+--------------------
+
+Bootstrap supports `four form styles`__.  By default, ``deform_bootstrap``
+uses the ``.form-horizontal`` style.  You can specify one of the other
+styles be setting the ``bootstrap_form_style`` attribute of your ``Form``::
+
+  myform = Form(myschema, bootstrap_form_style='form-vertical')
+
+__ http://twitter.github.com/bootstrap/base-css.html#forms
+
+inline
+------
+
+Bootstrap supports inline checkbox and radio choices.  Normally
+``RadioChoiceWidget``\s and ``CheckboxChoiceWidgets``\s are displayed
+with one choice per line.  To select the inline style, set the
+``inline`` attribute of the choice widget to a trueish value::
+
+  class MySchema(colander.Schema):
+      choice = colander.SchemaNode(
+          colander.String(),
+          widget=deform.widget.CheckboxChoiceWidget(
+              values=[(u'a', u'Apple'),
+                      (u'b', u'Bear'),
+                      (u'c', u'Computer')],
+              inline=True))

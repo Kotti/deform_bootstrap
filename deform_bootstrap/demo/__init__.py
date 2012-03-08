@@ -130,3 +130,36 @@ class DeformBootstrapDemo(DeformDemo):
         form = deform.Form(schema, buttons=('submit',))
         return self.render_form(form)
 
+    @view_config(renderer='deformdemo:templates/form.pt',
+                 name='inline_radiochoice')
+    @demonstrate('Inline RadioChoice Widget')
+    def inline_radiochoice(self):
+        class Schema(colander.Schema):
+            choice = colander.SchemaNode(
+                colander.String(),
+                widget=deform.widget.RadioChoiceWidget(
+                    values=[('a', 'Arrow'),
+                            ('b', 'Brick'),
+                            ('c', 'Cardamom')],
+                    inline=True),
+                description='Pick one')
+        schema = Schema()
+        form = deform.Form(schema, buttons=('submit',))
+        return self.render_form(form)
+
+    @view_config(renderer='deformdemo:templates/form.pt',
+                 name='inline_checkboxchoice')
+    @demonstrate('Inline CheckboxChoice Widget')
+    def inline_checkboxchoice(self):
+        class Schema(colander.Schema):
+            choice = colander.SchemaNode(
+                deform.schema.Set(),
+                widget=deform.widget.CheckboxChoiceWidget(
+                    values=[('a', 'Awesome'),
+                            ('b', 'Bogus'),
+                            ('c', 'Crud')],
+                    inline=True),
+                description='Pick as many as apply')
+        schema = Schema()
+        form = deform.Form(schema, buttons=('submit',))
+        return self.render_form(form)
