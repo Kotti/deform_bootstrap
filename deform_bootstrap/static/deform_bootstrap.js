@@ -22,14 +22,9 @@
     var $lis, $ul;
     $ul = oid_node.children('.deformSeqContainer');
     $lis = $ul.children('.deformSeqItem');
-    $lis.find('.deformClosebutton').removeClass('deformClosebuttonActive');
-    oid_node.children('.deformSeqAdd').show();
-    if (now_len > min_len) {
-      $lis.find('.deformClosebutton').addClass('deformClosebuttonActive');
-    }
-    if (now_len >= max_len) {
-      return oid_node.children('.deformSeqAdd').hide();
-    }
+
+    $lis.children('.close').toggle(now_len > min_len);
+    oid_node.children('.deformSeqAdd').toggle(now_len < max_len);
   };
 
 }.call(this));
