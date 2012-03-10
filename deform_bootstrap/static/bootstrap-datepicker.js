@@ -204,7 +204,7 @@
         // Hide all other datepickers.
         clearDatePickers(this);
 
-        var offset = this.$el.offset();
+        var offset = this.$el.position();
 
         this.$picker.css({
           top: offset.top + this.$el.outerHeight() + 2,
