@@ -1,4 +1,4 @@
-<div tal:attributes="class 'deformSeqItem ' + str(field.error and field.widget.error_class)"
+<div tal:attributes="class 'deformSeqItem ' + str(field.error and field.widget.error_class or '')"
     tal:omit-tag="field.widget.hidden"
     title="${field.description}" i18n:domain="deform">
   <!-- sequence_item -->
