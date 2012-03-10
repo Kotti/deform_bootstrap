@@ -130,10 +130,17 @@ CSS
   This file contains a small fix for conflicts between chosen and bootstrap.
   Only needed if you make use of chosen, but harmless if you don't.
 
+``bootstrap-datepicker.css``
+  The styles for the *native* bootstrap datepicker widget (see above).
+
+Note that ``chosen_bootstrap.css`` and ``bootstrap-datepicker.css``
+are included in ``deform_bootstrap.css``, so you will only need them
+if you use some other version of the bootstrap css.
+
 JS
 --
 
-``bootstrap_datepicker.js``
+``bootstrap-datepicker.js``
   Only needed if you want to use the *native* bootstrap datepicker widget
   (see above).
 
