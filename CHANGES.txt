@@ -1,11 +1,14 @@
 CHANGES
 =======
 
-0.2 - Unreleased
+0.2 - 2012-03-20
 ----------------
 
 - ChosenSingleWidget and ChosenMultipleWidget; includes chosen 0.9.7 [mmariani]
 
+- Add support for "inline" checkbox and radio choices.
+
+- Many bugfixes.  Many thanks to dairiki.
 
 0.1 - 2012-02-29
 ----------------
