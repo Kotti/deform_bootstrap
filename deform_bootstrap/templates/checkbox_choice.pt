@@ -1,5 +1,5 @@
 <input type="hidden" name="__start__" value="${field.name}:sequence"/>
-  <tal:loop tal:repeat="choice field.widget.values">
+  <tal:loop tal:repeat="choice values | field.widget.values">
     <tal:def tal:define="(value, title) choice;
                          inline getattr(field.widget, 'inline', False);
                          label_class inline and 'checkbox inline' or 'checkbox'">
