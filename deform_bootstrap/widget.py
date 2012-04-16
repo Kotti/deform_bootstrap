@@ -109,6 +109,8 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
 class ChosenSingleWidget(SelectWidget):
     template = 'chosen_single'
 
+class ChosenOptGroupWidget(SelectWidget):
+    template = 'chosen_optgroup'
 
 class ChosenMultipleWidget(Widget):
     template = 'chosen_multiple'

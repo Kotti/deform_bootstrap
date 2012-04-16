@@ -175,8 +175,8 @@ JS
   widgets that support it.
 
 ``jquery_chosen/chosen.jquery.js``
-  Only needed if you use ``ChosenSingleWidget`` or ``ChosenMultipleWidget``.
-
+  Only needed if you use ``ChosenSingleWidget``, ``ChosenOptGroupWidget``, or
+  ``ChosenMultipleWidget``,
 
 LESS / twitter_bootstrap
 ------------------------
