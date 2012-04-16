@@ -4,6 +4,8 @@ CHANGES
 0.2.1 - Unreleased
 ------------------
 
+- Add ChosenOptGroupWidget.
+
 0.2 - 2012-03-20
 ----------------
 
