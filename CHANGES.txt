@@ -4,6 +4,8 @@ CHANGES
 0.2.2 - Unreleased
 ------------------
 
+- Upgraded Bootstrap to v2.0.4
+
 0.2.1 - 2012-04-17
 ------------------
 
