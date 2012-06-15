@@ -4,7 +4,7 @@
 
   <legend tal:condition="field.title">${field.title}</legend>
 
-  <div class="clearfix alert-message error" tal:condition="field.errormsg">
+  <div class="clearfix alert alert-message error" tal:condition="field.errormsg">
     <p i18n:translate="">
       There was a problem with this section
     </p>
