@@ -39,7 +39,7 @@
         </span>
       </span>
 
-      <span class="help-block" tal:condition="field.description">
+      <span class="help-block" tal:condition="field.description and not field.widget.hidden">
         ${field.description}
       </span>
     </div>
