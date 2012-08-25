@@ -3,7 +3,7 @@ from colander import null, Invalid
 from deform.i18n import _
 from deform.widget import AutocompleteInputWidget, SelectWidget, Widget
 from deform.widget import DateTimeInputWidget as DateTimeInputWidgetBase
-from deform.widget import default_resource_registry
+# from deform.widget import default_resource_registry
 
 
 class TypeaheadInputWidget(AutocompleteInputWidget):
@@ -42,7 +42,6 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
     items
         The max number of items to display in the dropdown. Defaults to
         ``8``.
-
     """
     readonly_template = 'readonly/textinput'
     size = None
@@ -65,7 +64,6 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
 
 
 class DateTimeInputWidget(DateTimeInputWidgetBase):
-
     template = 'splitted_datetimeinput'
     readonly_template = 'readonly/textinput'
     requirements = ()
@@ -109,8 +107,10 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
 class ChosenSingleWidget(SelectWidget):
     template = 'chosen_single'
 
+
 class ChosenOptGroupWidget(SelectWidget):
     template = 'chosen_optgroup'
+
 
 class ChosenMultipleWidget(Widget):
     template = 'chosen_multiple'
@@ -129,4 +129,3 @@ class ChosenMultipleWidget(Widget):
         if isinstance(pstruct, basestring):
             return (pstruct,)
         return tuple(pstruct)
-
