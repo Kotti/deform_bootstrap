@@ -1,0 +1,19 @@
+<span tal:omit-tag="">
+  <input tal:attributes="
+          class field.widget.css_class;
+             id field.oid;
+           name field.name;
+       required 'required' if field.required else None;
+           size field.widget.size;
+           type getattr(field.widget, 'type', 'text');
+          value cstruct or None;
+  " />
+  <script type="text/javascript">
+    deform.addCallback('${field.oid}', function (oid) {
+      $("#" + oid).tagsInput({
+          autocomplete_url: "${field.widget.autocomplete_url}",
+          width: "${field.widget.width}", height: "${field.widget.height}"
+      });
+    });
+  </script>
+</span>

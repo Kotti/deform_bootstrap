@@ -1,9 +1,9 @@
 import json
 from colander import null, Invalid
 from deform.i18n import _
-from deform.widget import AutocompleteInputWidget, SelectWidget, Widget
+from deform.widget import (AutocompleteInputWidget, SelectWidget, Widget,
+    TextInputWidget)
 from deform.widget import DateTimeInputWidget as DateTimeInputWidgetBase
-from deform.widget import default_resource_registry
 
 
 class TypeaheadInputWidget(AutocompleteInputWidget):
@@ -65,7 +65,6 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
 
 
 class DateTimeInputWidget(DateTimeInputWidgetBase):
-
     template = 'splitted_datetimeinput'
     readonly_template = 'readonly/textinput'
     requirements = ()
@@ -109,8 +108,10 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
 class ChosenSingleWidget(SelectWidget):
     template = 'chosen_single'
 
+
 class ChosenOptGroupWidget(SelectWidget):
     template = 'chosen_optgroup'
+
 
 class ChosenMultipleWidget(Widget):
     template = 'chosen_multiple'
@@ -130,3 +131,16 @@ class ChosenMultipleWidget(Widget):
             return (pstruct,)
         return tuple(pstruct)
 
+
+class TagsWidget(TextInputWidget):
+    '''This widget depends on xoxco's jQuery-Tags-Input:
+
+    http://xoxco.com/projects/code/tagsinput/
+
+    Usage::
+
+        widget = TagsWidget(autocomplete_url='/some/url')
+    '''
+    template = 'tagsinput'
+    height = 'auto'
+    width = 'auto'
