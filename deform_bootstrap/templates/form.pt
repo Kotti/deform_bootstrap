@@ -33,7 +33,7 @@
         tal:replace="structure
                      rndr(tmpl,field=f,cstruct=cstruct.get(f.name, null))" />
 
-    <div class="form-actions">
+    <div tal:condition="field.buttons" class="form-actions">
       <tal:block repeat="button field.buttons">
         <button
             tal:attributes="disabled button.disabled"
@@ -42,6 +42,8 @@
             type="${button.type}"
             class="btn ${repeat.button.start and 'btn-primary' or ''}"
             value="${button.value}">
+          <i tal:condition="hasattr(button, 'icon') and button.icon"
+                     class="${button.icon}"></i>
           ${button.title}
         </button>
       </tal:block>
