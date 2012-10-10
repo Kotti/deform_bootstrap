@@ -1,5 +1,8 @@
 <div tal:attributes="class 'deformSeqItem ' + str(field.error and field.widget.error_class or '')"
     tal:omit-tag="field.widget.hidden"
+    tal:define="
+		hidden hidden|field.widget.hidden;
+		oid oid|field.oid"
     title="${field.description}" i18n:domain="deform">
   <!-- sequence_item -->
   <a class="close"
@@ -8,6 +11,19 @@
      title="Remove"
      i18n:attributes="title"
      onclick="javascript:deform.removeSequenceItem(this);">&times;</a>
+
+<style>
+    .deformOrderbuttonActive:before {
+        content:"↕";
+        margin-right: 5px;
+    }
+</style>
+  <span class="deformOrderbutton close"
+        id="${oid}-order"
+        tal:condition="not hidden"
+        title="Reorder (via drag and drop)"
+        i18n:attributes="title title"></span>
+
   <span tal:replace="structure field.serialize(cstruct)"/>
   <tal:errors
      condition="field.error and not field.widget.hidden"
