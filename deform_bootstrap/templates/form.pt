@@ -9,7 +9,6 @@
   i18n:domain="deform">
 
   <fieldset>
-
     <legend tal:condition="field.title">${field.title}</legend>
 
     <input type="hidden" name="_charset_" />
@@ -36,7 +35,7 @@
     <div tal:condition="field.buttons" class="form-actions">
       <tal:block repeat="button field.buttons">
         <button
-            tal:attributes="disabled button.disabled"
+            tal:attributes="disabled button.disabled or None"
             id="${field.formid+button.name}"
             name="${button.name}"
             type="${button.type}"
@@ -68,5 +67,5 @@
        }
     );
   </script>
-  
+
 </form>
