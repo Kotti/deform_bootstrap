@@ -1,7 +1,10 @@
 CHANGES
 =======
 
-0.2.3 -2012-10-18
+0.2.4dev - Unreleased
+---------------------
+
+0.2.3 - 2012-10-18
 ------------------
 
 - Add support for deform's new orderable sequence support.  See #34.
