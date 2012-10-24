@@ -1,8 +1,10 @@
 CHANGES
 =======
 
-0.2.4dev - Unreleased
----------------------
+0.2.4 - 2012-10-24
+------------------
+
+- Add missing requirements (jquery ui timepicker).
 
 0.2.3 - 2012-10-18
 ------------------
