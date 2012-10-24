@@ -1,9 +1,10 @@
 import json
 from colander import null, Invalid
 from deform.i18n import _
-from deform.widget import AutocompleteInputWidget, SelectWidget, Widget
+from deform.widget import AutocompleteInputWidget
 from deform.widget import DateTimeInputWidget as DateTimeInputWidgetBase
-from deform.widget import default_resource_registry
+from deform.widget import SelectWidget
+from deform.widget import Widget
 
 
 class TypeaheadInputWidget(AutocompleteInputWidget):
@@ -50,6 +51,7 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
     template = 'typeahead_input'
     source = []
     items = 8
+    requirements = (('bootstrap', None), )
 
     def serialize(self, field, cstruct, readonly=False):
         if cstruct in (null, None):
@@ -108,14 +110,19 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
 
 class ChosenSingleWidget(SelectWidget):
     template = 'chosen_single'
+    requirements = (('chosen', None), )
+
 
 class ChosenOptGroupWidget(SelectWidget):
     template = 'chosen_optgroup'
+    requirements = (('chosen', None), )
+
 
 class ChosenMultipleWidget(Widget):
     template = 'chosen_multiple'
     values = ()
     size = 1
+    requirements = (('chosen', None), )
 
     def serialize(self, field, cstruct, readonly=False):
         if cstruct in (null, None):
@@ -129,4 +136,3 @@ class ChosenMultipleWidget(Widget):
         if isinstance(pstruct, basestring):
             return (pstruct,)
         return tuple(pstruct)
-
