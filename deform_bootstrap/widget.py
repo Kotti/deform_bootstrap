@@ -13,10 +13,6 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
     autocompletion via a list of values using bootstrap's typeahead plugin
     http://twitter.github.com/bootstrap/javascript.html#typeahead.
 
-    When this option is used, the :term:`bootstrap-typeahead`
-    library must be loaded into the page serving the form for
-    autocompletion to have any effect.
-
     **Attributes/Arguments**
 
     size
@@ -36,34 +32,67 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
         If true, during deserialization, strip the value of leading
         and trailing whitespace (default ``True``).
 
-    source
-        A list of strings.
+    values
+        A list of strings or string.
         Defaults to ``[]``.
+
+        If ``values`` is a string it will be treated as a
+        URL. If values is an iterable which can be serialized to a
+        :term:`json` array, it will be treated as local data.
+
+        If a string is provided to a URL, an :term:`xhr` request will
+        be sent to the URL. The response should be a JSON
+        serialization of a list of values.  For example:
+
+          ['foo', 'bar', 'baz']
+
+    min_length
+        ``min_length`` is an optional argument to
+        :term:`jquery.ui.autocomplete`. The number of characters to
+        wait for before activating the autocomplete call.  Defaults to
+        ``1``.
+
+    style
+        A string that will be placed literally in a ``style`` attribute on
+        the text input tag.  For example, 'width:150px;'.  Default: ``None``,
+        meaning no style attribute will be added to the input tag.
 
     items
         The max number of items to display in the dropdown. Defaults to
         ``8``.
 
     """
-    readonly_template = 'readonly/textinput'
     size = None
-    strip = True
     template = 'typeahead_input'
-    source = []
-    items = 8
+    readonly_template = 'readonly/textinput'
+    strip = True
+    values = []
+    min_length = None
+    style = None
+    items = None
     requirements = (('bootstrap', None), )
 
     def serialize(self, field, cstruct, readonly=False):
         if cstruct in (null, None):
             cstruct = ''
-        options = dict(
-            size=self.size,
-            source=self.source)
+        if isinstance(self.values, basestring):
+            url = self.values
+            self.values = (
+                'function (query, process){$.getJSON("%s", {"term": query}, process);}'
+                % (url))
+        options = {}
+        if self.items is not None:
+            options['items'] = self.items
+        if self.min_length is not None:
+            options['minLength'] = self.min_length
         template = readonly and self.readonly_template or self.template
+        options = json.dumps(options)[1:-1]
+        options = ', '+options if options else options
         return field.renderer(template,
-            cstruct=cstruct,
-            field=field,
-            options=json.dumps(options))
+                cstruct=cstruct,
+                field=field,
+                options=options,
+                values=self.values)
 
 
 class DateTimeInputWidget(DateTimeInputWidgetBase):
