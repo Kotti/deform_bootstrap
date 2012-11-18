@@ -187,6 +187,15 @@ Not needed at all. Only used internally to build the custom
 Information for developers / contributors
 =========================================
 
+Running unit tests
+------------------
+
+  $ bin/python setup.py dev
+  $ bin/py.test
+
+deformdemo
+----------
+
 ``deform_bootstrap`` passes 100% of the `deformdemo
 <http://deformdemo.repoze.org/>`_ tests.  Please do run the Selenium
 tests before submitting a patch.

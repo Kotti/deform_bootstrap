@@ -16,6 +16,12 @@ requires = [
     'deform',
     ]
 
+tests_require = [
+    'mock',
+    'pytest',
+    'pytest-cov',
+    ]
+
 setup(
     name='deform_bootstrap',
     version='0.2.5dev',
@@ -34,4 +40,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=requires,
+      extras_require={
+          'testing': tests_require,
+        },
     )
