@@ -5,6 +5,7 @@ from deform.widget import AutocompleteInputWidget
 from deform.widget import DateTimeInputWidget as DateTimeInputWidgetBase
 from deform.widget import SelectWidget
 from deform.widget import Widget
+import warnings
 
 
 class TypeaheadInputWidget(AutocompleteInputWidget):
@@ -62,6 +63,7 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
         ``8``.
 
     """
+    source = None
     size = None
     template = 'typeahead_input'
     readonly_template = 'readonly/textinput'
@@ -75,6 +77,10 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
     def serialize(self, field, cstruct, readonly=False):
         if cstruct in (null, None):
             cstruct = ''
+        if self.source is not None:
+            warnings.warn('"Source" argument is now deprecated, use "values" instead',
+                category=DeprecationWarning)
+            self.values = self.source
         if isinstance(self.values, basestring):
             url = self.values
             self.values = (
