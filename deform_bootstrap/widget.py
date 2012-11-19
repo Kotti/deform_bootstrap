@@ -63,42 +63,36 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
         ``8``.
 
     """
-    source = None
-    size = None
     template = 'typeahead_input'
-    readonly_template = 'readonly/textinput'
-    strip = True
     values = []
-    min_length = None
-    style = None
-    items = None
     requirements = (('bootstrap', None), )
 
-    def serialize(self, field, cstruct, readonly=False):
+    def serialize(self, field, cstruct, **kw):
         if cstruct in (null, None):
             cstruct = ''
-        if self.source is not None:
+        readonly = kw.get('readonly', self.readonly)
+        if 'source' in self.__dict__:
             warnings.warn('"Source" argument is now deprecated, use "values" instead',
                 category=DeprecationWarning)
             self.values = self.source
         if isinstance(self.values, basestring):
             url = self.values
-            self.values = (
+            source = (
                 'function (query, process){$.getJSON("%s", {"term": query}, process);}'
                 % (url))
+        else:
+            source = json.dumps(self.values)
         options = {}
-        if self.items is not None:
-            options['items'] = self.items
-        if self.min_length is not None:
-            options['minLength'] = self.min_length
-        template = readonly and self.readonly_template or self.template
+        if 'min_length' in self.__dict__ or 'min_length' in kw:
+            options['minLength'] = kw.pop('min_length', self.min_length)
+        if 'items' in self.__dict__ or 'items' in kw:
+            options['items'] =  kw.pop('items', self.items)
         options = json.dumps(options)[1:-1]
-        options = ', '+options if options else options
-        return field.renderer(template,
-                cstruct=cstruct,
-                field=field,
-                options=options,
-                values=self.values)
+        kw['options'] = ', '+options if options else options
+        kw['values'] = source
+        tmpl_values = self.get_template_values(field, cstruct, kw)
+        template = readonly and self.readonly_template or self.template
+        return field.renderer(template, **tmpl_values)
 
 
 class DateTimeInputWidget(DateTimeInputWidgetBase):
