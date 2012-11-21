@@ -5,6 +5,7 @@ from deform.widget import AutocompleteInputWidget
 from deform.widget import DateTimeInputWidget as DateTimeInputWidgetBase
 from deform.widget import SelectWidget
 from deform.widget import Widget
+from deform.widget import _normalize_choices
 import warnings
 
 
@@ -157,7 +158,8 @@ class ChosenMultipleWidget(Widget):
         if cstruct in (null, None):
             cstruct = ()
         template = readonly and self.readonly_template or self.template
-        return field.renderer(template, field=field, cstruct=cstruct)
+        return field.renderer(template, field=field, cstruct=cstruct,
+                              values=_normalize_choices(self.values))
 
     def deserialize(self, field, pstruct):
         if pstruct is null:
