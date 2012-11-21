@@ -4,6 +4,9 @@ CHANGES
 0.2.5 - Unreleased
 ------------------
 
+- Add remote source for TypeAheadInputWidget,
+ 'source' attribute renamed to 'values'
+
 0.2.4 - 2012-10-24
 ------------------
 
