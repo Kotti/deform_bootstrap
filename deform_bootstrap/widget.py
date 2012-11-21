@@ -9,6 +9,16 @@ from deform.widget import _normalize_choices
 import warnings
 
 
+def _normalize_optgroup_choices(values):
+    result = []
+    for group in values:
+        result.append({
+            'label': group['label'],
+            'values': _normalize_choices(group['values']),
+        })
+    return result
+
+
 class TypeaheadInputWidget(AutocompleteInputWidget):
     """
     Renders an ``<input type="text"/>`` widget which provides
@@ -146,6 +156,13 @@ class ChosenSingleWidget(SelectWidget):
 class ChosenOptGroupWidget(SelectWidget):
     template = 'chosen_optgroup'
     requirements = (('chosen', None), )
+
+    def serialize(self, field, cstruct, readonly=False):
+        if cstruct in (null, None):
+            cstruct = self.null_value
+        template = readonly and self.readonly_template or self.template
+        return field.renderer(template, field=field, cstruct=cstruct,
+                              values=_normalize_optgroup_choices(self.values))
 
 
 class ChosenMultipleWidget(Widget):
