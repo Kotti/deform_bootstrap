@@ -7,6 +7,8 @@ CHANGES
 - Add remote source for TypeAheadInputWidget,
  'source' attribute renamed to 'values'
 
+- Fixed `sequence_item.pt` not to break in Chameleon.
+
 0.2.4 - 2012-10-24
 ------------------
 
