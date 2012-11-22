@@ -14,7 +14,7 @@
 
 <style>
     .deformOrderbuttonActive:before {
-        content:"&#x2195;";
+        content:"\2195";
         margin-right: 5px;
     }
 </style>
