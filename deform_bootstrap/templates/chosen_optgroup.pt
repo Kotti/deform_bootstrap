@@ -4,7 +4,7 @@
           class="i-can-haz-chzn-select"
           tal:attributes="size field.widget.size;
                           data-placeholder getattr(field.widget, 'placeholder', nothing)">
-   <optgroup tal:repeat="group field.widget.values" label="${group['label']}">
+   <optgroup tal:repeat="group values" label="${group['label']}">
      <option tal:repeat="(value, description) group['values']"
              tal:attributes="selected value == cstruct and 'selected';
                              class field.widget.css_class"
