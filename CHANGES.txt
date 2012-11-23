@@ -4,10 +4,12 @@ CHANGES
 0.2.5 - Unreleased
 ------------------
 
-- Add remote source for TypeAheadInputWidget,
- 'source' attribute renamed to 'values'
+- Fix normalization of chosen widget values. (#40)
 
-- Fixed `sequence_item.pt` not to break in Chameleon.
+- Add remote source for TypeAheadInputWidget, 'source' attribute
+  renamed to 'values'.  (#37)
+
+- Fixed `sequence_item.pt` not to break in Chameleon. (#39)
 
 0.2.4 - 2012-10-24
 ------------------
