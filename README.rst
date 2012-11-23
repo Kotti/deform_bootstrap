@@ -33,7 +33,7 @@ looks in practice you can run these commands, assuming that you have a
 `virtualenv <http://pypi.python.org/pypi/virtualenv>`_ set up in your
 ``deform_bootstrap`` directory::
 
-  $ git clone https://github.com/pyfidelity/deformdemo.git
+  $ git clone https://github.com/Pylons/deformdemo.git
   $ cd deformdemo
   $ ../bin/python setup.py develop
   $ cd ..
