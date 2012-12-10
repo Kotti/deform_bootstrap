@@ -7,6 +7,10 @@ deform_bootstrap
 and styles for the `deform form library
 <http://pypi.python.org/pypi/deform/0.9.4>`_.
 
+deform_bootstrap is `developed on GitHub
+<https://github.com/Kotti/deform_bootstrap>`_.  Latest `releases are
+available on PyPI <http://pypi.python.org/pypi/deform_bootstrap>`_.
+
 How to use it
 =============
 
@@ -277,4 +281,4 @@ people for support, code, patches etc:
  - Jeff Dairiki
  - Marco Mariani
  - Tom Lazar
- - https://github.com/dnouri/deform_bootstrap/contributors
+ - https://github.com/Kotti/deform_bootstrap/contributors
