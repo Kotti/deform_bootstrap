@@ -6,8 +6,9 @@
   method="${field.method}"
   enctype="multipart/form-data"
   accept-charset="utf-8"
-  i18n:domain="deform">
-
+  i18n:domain="deform"
+  tal:define="inline field.bootstrap_form_style == 'form-inline'">
+  
   <fieldset>
 
     <legend tal:condition="field.title">${field.title}</legend>
@@ -33,7 +34,7 @@
         tal:replace="structure
                      rndr(tmpl,field=f,cstruct=cstruct.get(f.name, null))" />
 
-    <div tal:condition="field.buttons" class="form-actions">
+    <div tal:condition="field.buttons" tal:omit-tag="inline" class="form-actions">
       <tal:block repeat="button field.buttons">
         <button
             tal:attributes="disabled button.disabled"
