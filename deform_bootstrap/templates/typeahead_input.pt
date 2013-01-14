@@ -10,7 +10,8 @@
            data-provide="typeahead"
            tal:attributes="size size;
                            class css_class;
-                           style style"
+                           style style;
+                           placeholder getattr(field.widget, 'placeholder', nothing)"
            id="${oid}"/>
     <script tal:condition="field.widget.values" type="text/javascript">
         deform.addCallback(
