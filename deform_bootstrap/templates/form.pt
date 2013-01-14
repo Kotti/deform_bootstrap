@@ -7,7 +7,7 @@
   enctype="multipart/form-data"
   accept-charset="utf-8"
   i18n:domain="deform"
-  tal:define="inline field.bootstrap_form_style == 'form-inline'">
+  tal:define="inline getattr(field, 'bootstrap_form_style', None) == 'form-inline'">
   
   <fieldset>
 
