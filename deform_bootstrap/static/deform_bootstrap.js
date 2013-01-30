@@ -25,7 +25,7 @@
     $ul = oid_node.children('.deformSeqContainer');
     $lis = $ul.children('.deformSeqItem');
 
-    $lis.children('.close').toggle(now_len > min_len);
+    $lis.children('.deformClosebutton').toggle(now_len > min_len);
     oid_node.children('.deformSeqAdd').toggle(now_len < max_len);
     if (orderable) {
         if (now_len > 1) {
