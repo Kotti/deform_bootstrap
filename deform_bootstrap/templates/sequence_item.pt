@@ -5,24 +5,28 @@
 		oid oid|field.oid"
     title="${field.description}" i18n:domain="deform">
   <!-- sequence_item -->
-  <a class="close"
-     id="${field.oid}-close"
-     tal:condition="not field.widget.hidden"
-     title="Remove"
-     i18n:attributes="title"
-     onclick="javascript:deform.removeSequenceItem(this);">&times;</a>
-
-<style>
-    .deformOrderbuttonActive:before {
-        content:"\2195";
-        margin-right: 5px;
-    }
-</style>
   <span class="deformOrderbutton close"
         id="${oid}-order"
         tal:condition="not hidden"
         title="Reorder (via drag and drop)"
         i18n:attributes="title title"></span>
+    <a class="deformClosebutton close"
+       id="${field.oid}-close"
+       tal:condition="not field.widget.hidden"
+       title="Remove"
+       style="padding-right:0.4em"
+       i18n:attributes="title"
+       onclick="javascript:deform.removeSequenceItem(this);">&times;</a>
+
+<style>
+    .deformOrderbutton {
+        float:right;
+    }
+    .deformOrderbuttonActive:before {
+        content:"\2195";
+        margin-right: 5px;
+    }
+</style>
 
   <span tal:replace="structure field.serialize(cstruct)"/>
   <tal:errors
