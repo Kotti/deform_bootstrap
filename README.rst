@@ -7,6 +7,10 @@ deform_bootstrap
 and styles for the `deform form library
 <http://pypi.python.org/pypi/deform/0.9.4>`_.
 
+deform_bootstrap is `developed on GitHub
+<https://github.com/Kotti/deform_bootstrap>`_.  Latest `releases are
+available on PyPI <http://pypi.python.org/pypi/deform_bootstrap>`_.
+
 How to use it
 =============
 
@@ -33,7 +37,7 @@ looks in practice you can run these commands, assuming that you have a
 `virtualenv <http://pypi.python.org/pypi/virtualenv>`_ set up in your
 ``deform_bootstrap`` directory::
 
-  $ git clone https://github.com/pyfidelity/deformdemo.git
+  $ git clone https://github.com/Pylons/deformdemo.git
   $ cd deformdemo
   $ ../bin/python setup.py develop
   $ cd ..
@@ -187,6 +191,15 @@ Not needed at all. Only used internally to build the custom
 Information for developers / contributors
 =========================================
 
+Running unit tests
+------------------
+
+  $ bin/python setup.py dev
+  $ bin/py.test
+
+deformdemo
+----------
+
 ``deform_bootstrap`` passes 100% of the `deformdemo
 <http://deformdemo.repoze.org/>`_ tests.  Please do run the Selenium
 tests before submitting a patch.
@@ -268,4 +281,4 @@ people for support, code, patches etc:
  - Jeff Dairiki
  - Marco Mariani
  - Tom Lazar
- - https://github.com/dnouri/deform_bootstrap/contributors
+ - https://github.com/Kotti/deform_bootstrap/contributors

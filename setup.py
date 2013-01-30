@@ -16,9 +16,15 @@ requires = [
     'deform',
     ]
 
+tests_require = [
+    'mock',
+    'pytest',
+    'pytest-cov',
+    ]
+
 setup(
     name='deform_bootstrap',
-    version='0.2.4dev',
+    version='0.2.6dev',
     description="Twitter Bootstrap compatible widgets, templates and styles for the deform form library",
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
@@ -34,4 +40,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=requires,
+      extras_require={
+          'testing': tests_require,
+        },
     )

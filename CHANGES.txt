@@ -1,8 +1,25 @@
 CHANGES
 =======
 
-0.2.3 - Unreleased
+0.2.5 - Unreleased
 ------------------
+
+- Fix normalization of chosen widget values. (#40)
+
+- Add remote source for TypeAheadInputWidget, 'source' attribute
+  renamed to 'values'.  (#37)
+
+- Fixed `sequence_item.pt` not to break in Chameleon. (#39)
+
+0.2.4 - 2012-10-24
+------------------
+
+- Add missing requirements (jquery ui timepicker).
+
+0.2.3 - 2012-10-18
+------------------
+
+- Add support for deform's new orderable sequence support.  See #34.
 
 0.2.2 - 2012-06-11
 ------------------

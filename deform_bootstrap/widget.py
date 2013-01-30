@@ -1,9 +1,22 @@
 import json
 from colander import null, Invalid
 from deform.i18n import _
-from deform.widget import AutocompleteInputWidget, SelectWidget, Widget
+from deform.widget import AutocompleteInputWidget
 from deform.widget import DateTimeInputWidget as DateTimeInputWidgetBase
-from deform.widget import default_resource_registry
+from deform.widget import SelectWidget
+from deform.widget import Widget
+from deform.widget import _normalize_choices
+import warnings
+
+
+def _normalize_optgroup_choices(values):
+    result = []
+    for group in values:
+        result.append({
+            'label': group['label'],
+            'values': _normalize_choices(group['values']),
+        })
+    return result
 
 
 class TypeaheadInputWidget(AutocompleteInputWidget):
@@ -11,10 +24,6 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
     Renders an ``<input type="text"/>`` widget which provides
     autocompletion via a list of values using bootstrap's typeahead plugin
     http://twitter.github.com/bootstrap/javascript.html#typeahead.
-
-    When this option is used, the :term:`bootstrap-typeahead`
-    library must be loaded into the page serving the form for
-    autocompletion to have any effect.
 
     **Attributes/Arguments**
 
@@ -35,33 +44,66 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
         If true, during deserialization, strip the value of leading
         and trailing whitespace (default ``True``).
 
-    source
-        A list of strings.
+    values
+        A list of strings or string.
         Defaults to ``[]``.
+
+        If ``values`` is a string it will be treated as a
+        URL. If values is an iterable which can be serialized to a
+        :term:`json` array, it will be treated as local data.
+
+        If a string is provided to a URL, an :term:`xhr` request will
+        be sent to the URL. The response should be a JSON
+        serialization of a list of values.  For example:
+
+          ['foo', 'bar', 'baz']
+
+    min_length
+        ``min_length`` is an optional argument to
+        :term:`jquery.ui.autocomplete`. The number of characters to
+        wait for before activating the autocomplete call.  Defaults to
+        ``1``.
+
+    style
+        A string that will be placed literally in a ``style`` attribute on
+        the text input tag.  For example, 'width:150px;'.  Default: ``None``,
+        meaning no style attribute will be added to the input tag.
 
     items
         The max number of items to display in the dropdown. Defaults to
         ``8``.
 
     """
-    readonly_template = 'readonly/textinput'
-    size = None
-    strip = True
     template = 'typeahead_input'
-    source = []
-    items = 8
+    values = []
+    requirements = (('bootstrap', None), )
 
-    def serialize(self, field, cstruct, readonly=False):
+    def serialize(self, field, cstruct, **kw):
         if cstruct in (null, None):
             cstruct = ''
-        options = dict(
-            size=self.size,
-            source=self.source)
+        readonly = kw.get('readonly', self.readonly)
+        if 'source' in self.__dict__:
+            warnings.warn('"Source" argument is now deprecated, use "values" instead',
+                category=DeprecationWarning)
+            self.values = self.source
+        if isinstance(self.values, basestring):
+            url = self.values
+            source = (
+                'function (query, process){$.getJSON("%s", {"term": query}, process);}'
+                % (url))
+        else:
+            source = json.dumps(self.values)
+        options = {}
+        if 'min_length' in self.__dict__ or 'min_length' in kw:
+            options['minLength'] = kw.pop('min_length', self.min_length)
+        if 'items' in self.__dict__ or 'items' in kw:
+            options['items'] =  kw.pop('items', self.items)
+        options = json.dumps(options)[1:-1]
+        kw['options'] = ', '+options if options else options
+        kw['values'] = source
+        tmpl_values = self.get_template_values(field, cstruct, kw)
         template = readonly and self.readonly_template or self.template
-        return field.renderer(template,
-            cstruct=cstruct,
-            field=field,
-            options=json.dumps(options))
+        return field.renderer(template, **tmpl_values)
 
 
 class DateTimeInputWidget(DateTimeInputWidgetBase):
@@ -108,20 +150,33 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
 
 class ChosenSingleWidget(SelectWidget):
     template = 'chosen_single'
+    requirements = (('chosen', None), )
+
 
 class ChosenOptGroupWidget(SelectWidget):
     template = 'chosen_optgroup'
+    requirements = (('chosen', None), )
+
+    def serialize(self, field, cstruct, readonly=False):
+        if cstruct in (null, None):
+            cstruct = self.null_value
+        template = readonly and self.readonly_template or self.template
+        return field.renderer(template, field=field, cstruct=cstruct,
+                              values=_normalize_optgroup_choices(self.values))
+
 
 class ChosenMultipleWidget(Widget):
     template = 'chosen_multiple'
     values = ()
     size = 1
+    requirements = (('chosen', None), )
 
     def serialize(self, field, cstruct, readonly=False):
         if cstruct in (null, None):
             cstruct = ()
         template = readonly and self.readonly_template or self.template
-        return field.renderer(template, field=field, cstruct=cstruct)
+        return field.renderer(template, field=field, cstruct=cstruct,
+                              values=_normalize_choices(self.values))
 
     def deserialize(self, field, pstruct):
         if pstruct is null:
@@ -129,4 +184,3 @@ class ChosenMultipleWidget(Widget):
         if isinstance(pstruct, basestring):
             return (pstruct,)
         return tuple(pstruct)
-
