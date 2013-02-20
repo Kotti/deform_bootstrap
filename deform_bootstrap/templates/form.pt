@@ -41,7 +41,7 @@
             id="${field.formid+button.name}"
             name="${button.name}"
             type="${button.type}"
-            class="btn ${repeat.button.start and 'btn-primary' or ''}"
+            class="btn ${repeat.button.start and 'btn-primary' or ''} ${button.css_class}"
             value="${button.value}">
           <i tal:condition="hasattr(button, 'icon') and button.icon"
                      class="${button.icon}"></i>
