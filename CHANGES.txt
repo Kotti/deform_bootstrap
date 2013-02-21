@@ -11,15 +11,15 @@ CHANGES
 
 - Fixed `sequence_item.pt` not to break in Chameleon. (#39)
 
-0.2.4 - 2012-10-24
-------------------
-
-- Add missing requirements (jquery ui timepicker).
-
 - Inherit ChosenMultipleWidget from SelectWidget.  This fixes broken readonly
   SelectWidgets.  See #49.
 
 - Add support for css_class argument in Button constructor.  See #48.
+
+0.2.4 - 2012-10-24
+------------------
+
+- Add missing requirements (jquery ui timepicker).
 
 0.2.3 - 2012-10-18
 ------------------
