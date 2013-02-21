@@ -165,7 +165,7 @@ class ChosenOptGroupWidget(SelectWidget):
                               values=_normalize_optgroup_choices(self.values))
 
 
-class ChosenMultipleWidget(Widget):
+class ChosenMultipleWidget(SelectWidget):
     template = 'chosen_multiple'
     values = ()
     size = 1
