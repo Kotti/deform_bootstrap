@@ -1,8 +1,11 @@
 CHANGES
 =======
 
-0.2.6
------
+0.2.7dev - unreleased
+---------------------
+
+0.2.6 - 2013-02-23
+------------------
 
 - Inherit ChosenMultipleWidget from SelectWidget.  This fixes broken readonly
   SelectWidgets.  See #49.
