@@ -1,8 +1,16 @@
 CHANGES
 =======
 
-0.2.5 - Unreleased
-------------------
+0.2.6
+-----
+
+- Inherit ChosenMultipleWidget from SelectWidget.  This fixes broken readonly
+  SelectWidgets.  See #49.
+
+- Add support for css_class argument in Button constructor.  See #48.
+
+0.2.5
+-----
 
 - Fix normalization of chosen widget values. (#40)
 
@@ -10,11 +18,6 @@ CHANGES
   renamed to 'values'.  (#37)
 
 - Fixed `sequence_item.pt` not to break in Chameleon. (#39)
-
-- Inherit ChosenMultipleWidget from SelectWidget.  This fixes broken readonly
-  SelectWidgets.  See #49.
-
-- Add support for css_class argument in Button constructor.  See #48.
 
 0.2.4 - 2012-10-24
 ------------------
