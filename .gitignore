@@ -5,4 +5,5 @@ lib/
 local
 deform_bootstrap.egg-info/
 *.pyc
+.*.swp
 .coverage
