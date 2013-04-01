@@ -142,6 +142,8 @@ class DateTimeInputWidget(DateTimeInputWidgetBase):
 
             if not _time:
                 _time = "00:00:00"
+            elif _time.count(':') == 1:
+                _time += ':00'
 
             result = ' '.join([_date, _time])
 
