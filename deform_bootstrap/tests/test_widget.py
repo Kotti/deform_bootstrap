@@ -1,5 +1,4 @@
 import unittest
-from StringIO import StringIO
 
 from deform.tests.test_widget import DummyField, DummyRenderer, DummySchema
 
