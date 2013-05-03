@@ -4,7 +4,6 @@ from deform.i18n import _
 from deform.widget import AutocompleteInputWidget
 from deform.widget import DateTimeInputWidget as DateTimeInputWidgetBase
 from deform.widget import SelectWidget
-from deform.widget import Widget
 from deform.widget import _normalize_choices
 import warnings
 
