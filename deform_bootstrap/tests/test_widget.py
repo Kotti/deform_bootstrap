@@ -189,3 +189,44 @@ class TestDateTimeInputWidget(unittest.TestCase):
         pstruct = {'date': '2013-05-03', 'time': '09:28'}
         cstruct = widget.deserialize(field, pstruct)
         self.assertEqual(cstruct, '2013-05-03 09:28:00')
+
+
+class TestChosenOptGroupWidget(unittest.TestCase):
+
+    def _makeOne(self, **kw):
+        from deform_bootstrap.widget import ChosenOptGroupWidget
+        return ChosenOptGroupWidget(**kw)
+
+    def test_serialize_null(self):
+        from colander import null
+        widget = self._makeOne()
+        renderer = DummyRenderer()
+        schema = DummySchema()
+        field = DummyField(schema, renderer=renderer)
+        widget.serialize(field, null)
+        self.assertEqual(renderer.template, widget.template)
+        self.assertEqual(renderer.kw['field'], field)
+        self.assertEqual(renderer.kw['cstruct'], '')
+
+    def test_serialize_None(self):
+        widget = self._makeOne()
+        renderer = DummyRenderer()
+        schema = DummySchema()
+        field = DummyField(schema, renderer=renderer)
+        widget.serialize(field, None)
+        self.assertEqual(renderer.template, widget.template)
+        self.assertEqual(renderer.kw['field'], field)
+        self.assertEqual(renderer.kw['cstruct'], '')
+
+    def test_serialize_not_null(self):
+        widget = self._makeOne()
+        renderer = DummyRenderer()
+        schema = DummySchema()
+        field = DummyField(schema, renderer=renderer)
+        widget.values = [{'label': 'alphabet',
+                          'values': [('abc', 'ABC'), ('def', 'DEF')],
+                         }]
+        widget.serialize(field, 'abc')
+        self.assertEqual(renderer.template, widget.template)
+        self.assertEqual(renderer.kw['field'], field)
+        self.assertEqual(renderer.kw['cstruct'], 'abc')
