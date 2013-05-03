@@ -7,6 +7,13 @@ from deform.widget import SelectWidget
 from deform.widget import _normalize_choices
 import warnings
 
+try:
+    unicode
+except NameError:
+    STRING_TYPES = (str,)
+else:
+    STRING_TYPES = (str, bytes)
+
 
 def _normalize_optgroup_choices(values):
     result = []
@@ -85,7 +92,7 @@ class TypeaheadInputWidget(AutocompleteInputWidget):
             warnings.warn('"Source" argument is now deprecated, use "values" instead',
                 category=DeprecationWarning)
             self.values = self.source
-        if isinstance(self.values, basestring):
+        if isinstance(self.values, STRING_TYPES):
             url = self.values
             source = (
                 'function (query, process){$.getJSON("%s", {"term": query}, process);}'
@@ -182,6 +189,6 @@ class ChosenMultipleWidget(SelectWidget):
     def deserialize(self, field, pstruct):
         if pstruct is null:
             return null
-        if isinstance(pstruct, basestring):
+        if isinstance(pstruct, STRING_TYPES):
             return (pstruct,)
         return tuple(pstruct)
