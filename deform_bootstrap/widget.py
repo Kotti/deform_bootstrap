@@ -9,7 +9,7 @@ import warnings
 
 try:
     unicode
-except NameError:
+except NameError: #pragma NO COVER
     STRING_TYPES = (str,)
 else: #pragma NO COVER
     STRING_TYPES = (str, bytes)
