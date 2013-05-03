@@ -230,3 +230,54 @@ class TestChosenOptGroupWidget(unittest.TestCase):
         self.assertEqual(renderer.template, widget.template)
         self.assertEqual(renderer.kw['field'], field)
         self.assertEqual(renderer.kw['cstruct'], 'abc')
+
+
+class TestChosenMultipleWidget(unittest.TestCase):
+
+    def _makeOne(self, **kw):
+        from deform_bootstrap.widget import ChosenMultipleWidget
+        return ChosenMultipleWidget(**kw)
+
+    def test_serialize_null(self):
+        from colander import null
+        widget = self._makeOne()
+        renderer = DummyRenderer()
+        schema = DummySchema()
+        field = DummyField(schema, renderer=renderer)
+        widget.serialize(field, null)
+        self.assertEqual(renderer.template, widget.template)
+        self.assertEqual(renderer.kw['field'], field)
+        self.assertEqual(renderer.kw['cstruct'], ())
+
+    def test_serialize_None(self):
+        widget = self._makeOne()
+        renderer = DummyRenderer()
+        schema = DummySchema()
+        field = DummyField(schema, renderer=renderer)
+        widget.serialize(field, None)
+        self.assertEqual(renderer.template, widget.template)
+        self.assertEqual(renderer.kw['field'], field)
+        self.assertEqual(renderer.kw['cstruct'], ())
+
+    def test_deserialize_null(self):
+        from colander import null
+        widget = self._makeOne()
+        renderer = DummyRenderer()
+        schema = DummySchema()
+        field = DummyField(schema, renderer=renderer)
+        self.assertTrue(widget.deserialize(field, null) is null)
+
+    def test_deserialize_text(self):
+        widget = self._makeOne()
+        renderer = DummyRenderer()
+        schema = DummySchema()
+        field = DummyField(schema, renderer=renderer)
+        self.assertEqual(widget.deserialize(field, 'abc'), ('abc',))
+
+    def test_deserialize_list(self):
+        widget = self._makeOne()
+        renderer = DummyRenderer()
+        schema = DummySchema()
+        field = DummyField(schema, renderer=renderer)
+        self.assertEqual(widget.deserialize(field, ['abc', 'def']),
+                         ('abc', 'def'))
