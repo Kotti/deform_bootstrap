@@ -11,7 +11,7 @@ try:
     unicode
 except NameError:
     STRING_TYPES = (str,)
-else:
+else: #pragma NO COVER
     STRING_TYPES = (str, bytes)
 
 
