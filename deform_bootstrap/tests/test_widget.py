@@ -58,8 +58,10 @@ class TestTypeaheadInputWidget(unittest.TestCase):
         self.assertEqual(renderer.kw['field'], field)
         self.assertEqual(renderer.kw['cstruct'], cstruct)
         self.assertEqual(renderer.kw['values'],
-            'function (query, process){$.getJSON("/items", {"term": query}, process);}')
-        self.assertEqual(renderer.kw['options'],', "minLength": 2, "items": 5')
+            ('function (query, process){'
+             '$.getJSON("/items", {"term": query}, process);}'))
+        self.assertEqual(renderer.kw['options'],
+                         ', "minLength": 2, "items": 5')
 
     def test_serialize_not_null_readonly(self):
         widget = self._makeOne()
