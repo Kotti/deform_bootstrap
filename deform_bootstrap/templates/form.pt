@@ -7,7 +7,9 @@
   enctype="multipart/form-data"
   accept-charset="utf-8"
   i18n:domain="deform"
-  tal:define="inline getattr(field, 'bootstrap_form_style', None) == 'form-inline'">
+  tal:define="inline getattr(field, 'bootstrap_form_style', None) == 'form-inline';
+              autocomplete autocomplete|field.autocomplete;"
+  tal:attributes="autocomplete autocomplete">
   
   <fieldset>
 
