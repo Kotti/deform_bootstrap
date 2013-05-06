@@ -3,6 +3,6 @@ default_resources = {
                         'css':("jquery_chosen/chosen.css",
                                 "chosen_bootstrap.css",)}
                  },
-        "bootstrap":{None:{'js':'bootstrap.min.js',
-                           'css':'deform_bootstrap.css'}},
+        "bootstrap":{None:{'js':('bootstrap.min.js',),
+                           'css':('deform_bootstrap.css',)}},
         }

@@ -12,8 +12,8 @@ def add_resources_to_registry():
     registry = Form.default_resource_registry
     for rqrt, versions in default_resources.items():
         for version, resources in versions.items():
-            registry.set_js_resources(rqrt, version, resources.get('js'))
-            registry.set_css_resources(rqrt, version, resources.get('css'))
+            registry.set_js_resources(rqrt, version, *resources.get('js'))
+            registry.set_css_resources(rqrt, version, *resources.get('css'))
 
 def add_search_path():
     loader = Form.default_renderer.loader
