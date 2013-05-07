@@ -23,6 +23,10 @@
          tal:omit-tag="not (input_prepend or input_append)"
          class="${prepend_class + ' ' + append_class}">
 
+      <span class="help-block" tal:condition="field.description and not field.widget.hidden">
+        ${field.description}
+      </span>
+
       <span class="add-on" tal:condition="input_prepend">${input_prepend}</span
       ><span tal:replace="structure field.serialize(cstruct).strip()"
       /><span class="add-on" tal:condition="input_append">${input_append}</span>
@@ -39,9 +43,6 @@
         </span>
       </span>
 
-      <span class="help-block" tal:condition="field.description and not field.widget.hidden">
-        ${field.description}
-      </span>
     </div>
 
   </div>
