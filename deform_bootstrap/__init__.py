@@ -17,9 +17,9 @@ def add_resources_to_registry():
 
 def add_search_path():
     loader = Form.default_renderer.loader
-    loader.search_path = (
+    loader.search_path = [
         resource_filename('deform_bootstrap', 'templates'),
-        ) + loader.search_path
+        ] + loader.search_path
 
 
 def includeme(config):
