@@ -34,7 +34,7 @@ setup(
     keywords='twitter bootstrap deform styles css web forms form',
     author='Daniel Nouri and contributors',
     author_email="pylons-discuss@googlegroups.com",
-    url='http://pypi.python.org/pypi/deform_bootstrap',
+    url='https://github.com/Kotti/deform_bootstrap',
     license='BSD-derived (http://www.repoze.org/LICENSE.txt)',
     packages=find_packages(),
     include_package_data=True,
