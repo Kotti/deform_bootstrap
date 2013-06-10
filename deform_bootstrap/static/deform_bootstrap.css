@@ -1094,28 +1094,28 @@ input[type="checkbox"][readonly] {
   color: #c09853;
 }
 
-.control-group.warning .checkbox,
-.control-group.warning .radio,
-.control-group.warning input,
-.control-group.warning select,
-.control-group.warning textarea {
+.control-group.warning > .controls > .checkbox,
+.control-group.warning > .controls > .radio,
+.control-group.warning > .controls > input,
+.control-group.warning > .controls > select,
+.control-group.warning > .controls > textarea {
   color: #c09853;
   border-color: #c09853;
 }
 
-.control-group.warning .checkbox:focus,
-.control-group.warning .radio:focus,
-.control-group.warning input:focus,
-.control-group.warning select:focus,
-.control-group.warning textarea:focus {
+.control-group.warning > .controls > .checkbox:focus,
+.control-group.warning > .controls > .radio:focus,
+.control-group.warning > .controls > input:focus,
+.control-group.warning > .controls > select:focus,
+.control-group.warning > .controls > textarea:focus {
   border-color: #a47e3c;
   -webkit-box-shadow: 0 0 6px #dbc59e;
      -moz-box-shadow: 0 0 6px #dbc59e;
           box-shadow: 0 0 6px #dbc59e;
 }
 
-.control-group.warning .input-prepend .add-on,
-.control-group.warning .input-append .add-on {
+.control-group.warning > .controls > .input-prepend .add-on,
+.control-group.warning > .controls > .input-append .add-on {
   color: #c09853;
   background-color: #fcf8e3;
   border-color: #c09853;
@@ -1127,28 +1127,28 @@ input[type="checkbox"][readonly] {
   color: #b94a48;
 }
 
-.control-group.error .checkbox,
-.control-group.error .radio,
-.control-group.error input,
-.control-group.error select,
-.control-group.error textarea {
+.control-group.error > .controls > .checkbox,
+.control-group.error > .controls > .radio,
+.control-group.error > .controls > input,
+.control-group.error > .controls > select,
+.control-group.error > .controls > textarea {
   color: #b94a48;
   border-color: #b94a48;
 }
 
-.control-group.error .checkbox:focus,
-.control-group.error .radio:focus,
-.control-group.error input:focus,
-.control-group.error select:focus,
-.control-group.error textarea:focus {
+.control-group.error > .controls > .checkbox:focus,
+.control-group.error > .controls > .radio:focus,
+.control-group.error > .controls > input:focus,
+.control-group.error > .controls > select:focus,
+.control-group.error > .controls > textarea:focus {
   border-color: #953b39;
   -webkit-box-shadow: 0 0 6px #d59392;
      -moz-box-shadow: 0 0 6px #d59392;
           box-shadow: 0 0 6px #d59392;
 }
 
-.control-group.error .input-prepend .add-on,
-.control-group.error .input-append .add-on {
+.control-group.error > .controls > .input-prepend .add-on,
+.control-group.error > .controls > .input-append .add-on {
   color: #b94a48;
   background-color: #f2dede;
   border-color: #b94a48;
