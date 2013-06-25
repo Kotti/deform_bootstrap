@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-0.2.8 - Unreleased
+0.2.8 - 2013-06-25
 ------------------
 
 - Fix resource registry.  See #56.
