@@ -1,3 +1,4 @@
+import json
 import unittest
 
 from deform.tests.test_widget import DummyField, DummyRenderer, DummySchema
@@ -29,7 +30,6 @@ class TestTypeaheadInputWidget(unittest.TestCase):
         self.assertEqual(renderer.kw['cstruct'], '')
 
     def test_serialize_iterable(self):
-        import json
         widget = self._makeOne()
         values = [1, 2, 3, 4]
         widget.values = values
@@ -60,8 +60,10 @@ class TestTypeaheadInputWidget(unittest.TestCase):
         self.assertEqual(renderer.kw['values'],
             ('function (query, process){'
              '$.getJSON("/items", {"term": query}, process);}'))
-        self.assertEqual(renderer.kw['options'],
-                         ', "minLength": 2, "items": 5')
+        self.assertEqual(
+            json.loads('{' + renderer.kw['options'][1:] + '}'),
+            {'minLength': 2, 'items': 5}
+            )
 
     def test_serialize_not_null_readonly(self):
         widget = self._makeOne()
