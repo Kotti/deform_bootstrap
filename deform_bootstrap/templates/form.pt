@@ -8,51 +8,88 @@
   accept-charset="utf-8"
   i18n:domain="deform"
   tal:define="inline getattr(field, 'bootstrap_form_style', None) == 'form-inline';
-              autocomplete autocomplete|field.autocomplete;"
-  tal:attributes="autocomplete autocomplete">
-  
-  <fieldset>
+              tabifyForm import: deform_bootstrap.utils.tabifyForm;
+              fields_list python: tabifyForm(field)">
 
-    <legend tal:condition="field.title">${field.title}</legend>
 
-    <input type="hidden" name="_charset_" />
-    <input type="hidden" name="__formid__" value="${field.formid}"/>
 
-    <div class="alert alert-block alert-error" tal:condition="field.error">
-      <span class="errorMsgLbl" i18n:translate="">
-        There was a problem with your submission
-      </span>
-      <br />
-      <span class="errorMsg" i18n:translate="">
-        Errors have been highlighted below
-      </span>
-      <p class="errorMsg">${field.errormsg}</p>
-    </div>
+  <!-- Hidden inputs and alerts at the top -->
+  <input type="hidden" name="_charset_" />
+  <input type="hidden" name="__formid__" value="${field.formid}"/>
 
-    <div
-        tal:define="rndr field.renderer;
-                    tmpl field.widget.item_template"
-        tal:repeat="f field.children"
-        tal:replace="structure
-                     rndr(tmpl,field=f,cstruct=cstruct.get(f.name, null))" />
+  <div class="alert alert-block alert-error" tal:condition="field.error">
+    <span class="errorMsgLbl" i18n:translate="">
+      There was a problem with your submission
+    </span>
+    <br />
+    <span class="errorMsg" i18n:translate="">
+      Errors have been highlighted below
+    </span>
+    <p class="errorMsg">${field.errormsg}</p>
+  </div>
 
-    <div tal:condition="field.buttons" tal:omit-tag="inline" class="form-actions">
-      <tal:block repeat="button field.buttons">
-        <button
-            tal:attributes="disabled button.disabled"
-            id="${field.formid+button.name}"
-            name="${button.name}"
-            type="${button.type}"
-            class="btn ${repeat.button.start and 'btn-primary' or ''} ${button.css_class}"
-            value="${button.value}">
-          <i tal:condition="hasattr(button, 'icon') and button.icon"
-                     class="${button.icon}"></i>
-          ${button.title}
-        </button>
+  <!-- Make the tabs -->
+  <tal:block tal:condition="not: fields_list.only_one">
+    <ul id="form-tabs" class="nav nav-tabs">
+
+      <!-- Show the 'default' tab only if we have some info to put in -->
+      <tal:block tal:condition="fields_list.have_default">
+        <li class="active"><a href="#default" data-toggle="tab" i18n:translate="">Default</a></li>
       </tal:block>
-    </div>
+      <!-- Add other tabs, if we don't have 'default' tab, make the first one active -->
+      <tal:block tal:repeat="mapping fields_list.other">
+        <li tal:attributes="class python: not fields_list['have_default'] and repeat['mapping'].index == 0 and 'active' or ''">
+          <a href="#${mapping.name}" data-toggle="tab">${mapping.title}</a>
+        </li>
+      </tal:block>
+    </ul>
+  </tal:block>
 
-  </fieldset>
+
+  <!-- Populate the tabs -->
+  <div id="form-tabs-content" class="tab-content">
+    <!-- If we have a default tab, this should be active -->
+    <fieldset
+      tal:attributes="class python: fields_list['have_default'] and 'tab-pane fade active in' or 'tab-pane fade'"
+      id="default">
+      <div
+          tal:define="rndr field.renderer;
+                      tmpl field.widget.item_template"
+          tal:repeat="f fields_list.default"
+          tal:replace="structure
+                       rndr(tmpl,field=f,cstruct=cstruct.get(f.name, null))" />
+    </fieldset>
+    <!-- If we don't have a default tab, the first one here should be active -->
+    <tal:block tal:repeat="mapping fields_list.other">
+      <fieldset
+        tal:attributes="class python: not fields_list['have_default'] and repeat['mapping'].index == 0 and 'tab-pane face active in' or 'tab-pane face'"
+        id="${mapping.name}">
+        <div
+          tal:define="rndr field.renderer;
+                      tmpl field.widget.item_template"
+          tal:replace="structure
+                       rndr(tmpl,field=mapping.children,cstruct=cstruct.get(mapping.name, null))" />
+      </fieldset>
+    </tal:block>
+
+  </div>
+
+  <!-- Append the buttons at the end -->
+  <div tal:condition="field.buttons" tal:omit-tag="inline" class="form-actions">
+    <tal:block repeat="button field.buttons">
+      <button
+          tal:attributes="disabled button.disabled"
+          id="${field.formid+button.name}"
+          name="${button.name}"
+          type="${button.type}"
+          class="btn ${repeat.button.start and 'btn-primary' or ''} ${button.css_class}"
+          value="${button.value}">
+        <i tal:condition="hasattr(button, 'icon') and button.icon"
+                   class="${button.icon}"></i>
+        ${button.title}
+      </button>
+    </tal:block>
+  </div>
 
   <script type="text/javascript" tal:condition="field.use_ajax">
     deform.addCallback(
@@ -71,5 +108,5 @@
        }
     );
   </script>
-  
+
 </form>
