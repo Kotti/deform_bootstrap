@@ -23,5 +23,5 @@ def tabifyForm(form):
         'default': children,
         'other': mappings,
         'only_one': mappings == [],
-        'have_default': len(children) > 1
+        'have_default': len(children) > 1 or len(children) == 1 and children[0].name != 'csrf_token'
     }
