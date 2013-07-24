@@ -214,9 +214,19 @@ catches up. Note, that you can still use jquery.form itself.
 Running Selenium tests
 ----------------------
 
-Follow the instructions in ``deformdemo`` to install Selenium.  Then
-install deform_bootstrap in your virtualenv and from within
-the ``deform_bootstrap`` package run this command:
+* Make sure you have a Java interpreter installed.
+
+* Download Selenium Server <http://seleniumhq.org/download/> standalone jar file.
+
+* Start the server with demo.ini.
+
+* In another terminal, run ``java -jar selenium-server-standalone-X.X.jar``.
+  Success is defined as seeing output on the console that ends like this:
+
+  $ 01:49:06.105 INFO - Started SocketListener on 0.0.0.0:4444
+  $ 01:49:06.105 INFO - Started org.openqa.jetty.jetty.Server@7d2a1e44
+
+* In yet another terminal, run the tests with the command:
 
   $ bin/python deform_bootstrap/demo/test.py
 
