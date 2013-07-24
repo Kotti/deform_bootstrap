@@ -224,14 +224,14 @@ Running Selenium tests
   Success is defined as seeing output on the console that ends like this:
 
 ```
-        01:49:06.105 INFO - Started SocketListener on 0.0.0.0:4444
-        01:49:06.105 INFO - Started org.openqa.jetty.jetty.Server@7d2a1e44
+01:49:06.105 INFO - Started SocketListener on 0.0.0.0:4444
+01:49:06.105 INFO - Started org.openqa.jetty.jetty.Server@7d2a1e44
 ```
 
 * In yet another terminal, run the tests with the command:
 
 ```
-        $ bin/python deform_bootstrap/demo/test.py
+$ bin/python deform_bootstrap/demo/test.py
 ```
 
 API
