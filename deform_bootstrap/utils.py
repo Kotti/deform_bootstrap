@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from colander import Mapping
 
 def tabifyForm(form):
     """
@@ -11,7 +12,7 @@ def tabifyForm(form):
     mappings = []
 
     for i in form.children:
-        if i.children:
+        if type(i.typ) is Mapping:
             mappings.append({'title': i.title,
                              'name': i.name,
                              'children': i,
