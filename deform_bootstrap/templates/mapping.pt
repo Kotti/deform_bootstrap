@@ -1,5 +1,3 @@
-<fieldset i18n:domain="deform">
-
   <input type="hidden" name="__start__" value="${field.name}:mapping"/>
 
   <div class="clearfix alert alert-message error" tal:condition="field.errormsg">
@@ -11,8 +9,6 @@
 
   <div tal:condition="field.description">
     ${field.description}
-  </div>
-
   <div
       tal:define="rndr field.renderer;
                   tmpl field.widget.item_template"
@@ -20,5 +16,3 @@
       tal:replace="structure rndr(tmpl,field=f,cstruct=cstruct.get(f.name,null))" />
 
   <input type="hidden" name="__end__" value="${field.name}:mapping"/>
-
-</fieldset>

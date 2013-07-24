@@ -34,11 +34,12 @@
 
       <!-- Show the 'default' tab only if we have some info to put in -->
       <tal:block tal:condition="fields_list.have_default">
-        <li class="active"><a href="#default" data-toggle="tab" i18n:translate="">Default</a></li>
+        <li class="active" id="default-list"><a href="#default" data-toggle="tab" i18n:translate="">Default</a></li>
       </tal:block>
       <!-- Add other tabs, if we don't have 'default' tab, make the first one active -->
       <tal:block tal:repeat="mapping fields_list.other">
-        <li tal:attributes="class python: not fields_list['have_default'] and repeat['mapping'].index == 0 and 'active' or ''">
+        <li id="${mapping.name}-list"
+            tal:attributes="class python: not fields_list['have_default'] and repeat['mapping'].index == 0 and 'active' or ''">
           <a href="#${mapping.name}" data-toggle="tab">${mapping.title}</a>
         </li>
       </tal:block>
@@ -107,6 +108,31 @@
          $('#' + oid).ajaxForm($.extend(options, extra_options));
        }
     );
+  </script>
+  <script>
+    // Highlight all tabs with errors, move to the first one with the error
+    deform.addCallback(
+       '${field.formid}',
+       function() {
+        var alreadySelected = false;
+
+        // If we get some errors, remove the active classes
+        if($("div#form-tabs-content fieldset div.error").length !== 0){
+          $("ul#form-tabs li.active").removeClass('active');
+          $("div#form-tabs-content fieldset.active").removeClass('active in');
+        }
+        // Go through the errors, set first one to active, and add an 'error'
+        // class to all of the tabs with errors in them
+        $("div#form-tabs-content fieldset div.error").each( function() {
+          var errorId = $(this.parentNode).attr('id');
+          if(!alreadySelected){
+            $("ul#form-tabs li#" + errorId + '-list').addClass('active');
+            $("div#form-tabs-content fieldset#" + errorId).addClass('active in');
+            alreadySelected = true;
+          }
+          $("ul#form-tabs li#" +errorId + '-list').addClass('error');
+        });
+    });
   </script>
 
 </form>
