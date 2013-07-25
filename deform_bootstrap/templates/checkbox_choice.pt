@@ -5,7 +5,7 @@
                          label_class inline and 'checkbox inline' or 'checkbox'">
       <label class="${label_class}" for="${field.oid}-${repeat.choice.index}">
         <input tal:attributes="checked value in cstruct;
-                               class field.widget.css_class"
+                               class css_class|field.widget.css_class"
                type="checkbox"
                name="checkbox"
                value="${value}"

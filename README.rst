@@ -45,6 +45,41 @@ looks in practice you can run these commands, assuming that you have a
 
 You should now be able to access the demo site at http://0.0.0.0:8521
 
+Using tabs in forms
+-------------------
+
+To make a tabbed form, use mapping. Each mapping will appear as a new tab,
+taking the title of the mapping as the name for the tab.
+If you specify no tabs for some information, it will default to a '*Basic*'
+tab.
+
+    class Person(colander.Schema):
+        name = colander.SchemaNode(
+            colander.String(),
+            title=_(u'Name'),
+        )
+
+        surname = colander.SchemaNode(
+            colander.String(),
+            title=_(u'Surname'),
+        )
+
+
+    class Car(colander.Schema):
+        color = colander.SchemaNode(
+            colander.String(),
+            title=u'Color',
+        )
+        horsepower = colander.SchemaNode(
+            colander.Integer(),
+            title=u"Horsepower",
+        )
+
+
+    class ClientSchema(colander.Schema):
+        person = Person(title="Person information")
+        car = Car(title="Car information")
+
 Additional widgets / getting rid of legacy stuff
 ================================================
 
@@ -214,11 +249,24 @@ catches up. Note, that you can still use jquery.form itself.
 Running Selenium tests
 ----------------------
 
-Follow the instructions in ``deformdemo`` to install Selenium.  Then
-install deform_bootstrap in your virtualenv and from within
-the ``deform_bootstrap`` package run this command:
+* Make sure you have a Java interpreter installed.
 
-  $ bin/python deform_bootstrap/demo/test.py
+* Download Selenium Server <http://seleniumhq.org/download/> standalone jar file.
+
+* Start the server with demo.ini.
+
+* In another terminal, run ``java -jar selenium-server-standalone-X.X.jar``.
+  Success is defined as seeing output on the console that ends like this:
+
+
+        01:49:06.105 INFO - Started SocketListener on 0.0.0.0:4444
+        01:49:06.105 INFO - Started org.openqa.jetty.jetty.Server@7d2a1e44
+
+
+* In yet another terminal, run the tests with the command:
+
+
+        $ bin/python deform_bootstrap/demo/test.py
 
 API
 ===
