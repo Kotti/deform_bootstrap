@@ -8,51 +8,91 @@
   accept-charset="utf-8"
   i18n:domain="deform"
   tal:define="inline getattr(field, 'bootstrap_form_style', None) == 'form-inline';
+              tabify_form import: deform_bootstrap.utils.tabify_form;
+              fields_list python: tabify_form(field);
               autocomplete autocomplete|field.autocomplete;"
   tal:attributes="autocomplete autocomplete">
-  
-  <fieldset>
 
-    <legend tal:condition="field.title">${field.title}</legend>
 
-    <input type="hidden" name="_charset_" />
-    <input type="hidden" name="__formid__" value="${field.formid}"/>
 
-    <div class="alert alert-block alert-error" tal:condition="field.error">
-      <span class="errorMsgLbl" i18n:translate="">
-        There was a problem with your submission
-      </span>
-      <br />
-      <span class="errorMsg" i18n:translate="">
-        Errors have been highlighted below
-      </span>
-      <p class="errorMsg">${field.errormsg}</p>
-    </div>
+  <!-- Hidden inputs and alerts at the top -->
+  <input type="hidden" name="_charset_" />
+  <input type="hidden" name="__formid__" value="${field.formid}"/>
 
-    <div
-        tal:define="rndr field.renderer;
-                    tmpl field.widget.item_template"
-        tal:repeat="f field.children"
-        tal:replace="structure
-                     rndr(tmpl,field=f,cstruct=cstruct.get(f.name, null))" />
+  <div class="alert alert-block alert-error" tal:condition="field.error">
+    <span class="errorMsgLbl" i18n:translate="">
+      There was a problem with your submission
+    </span>
+    <br />
+    <span class="errorMsg" i18n:translate="">
+      Errors have been highlighted below
+    </span>
+    <p class="errorMsg">${field.errormsg}</p>
+  </div>
 
-    <div tal:condition="field.buttons" tal:omit-tag="inline" class="form-actions">
-      <tal:block repeat="button field.buttons">
-        <button
-            tal:attributes="disabled button.disabled"
-            id="${field.formid+button.name}"
-            name="${button.name}"
-            type="${button.type}"
-            class="btn ${repeat.button.start and 'btn-primary' or ''} ${button.css_class}"
-            value="${button.value}">
-          <i tal:condition="hasattr(button, 'icon') and button.icon"
-                     class="${button.icon}"></i>
-          ${button.title}
-        </button>
+  <!-- Make the tabs -->
+  <tal:block tal:condition="not: fields_list.only_one">
+    <ul class="nav nav-tabs form-tabs">
+
+      <!-- Show the 'basic' tab only if we have some info to put in -->
+      <tal:block tal:condition="fields_list.have_basic">
+        <li class="active" id="basic-list"><a href="#basic" data-toggle="tab" i18n:translate="">Basic</a></li>
       </tal:block>
-    </div>
+      <!-- Add other tabs, if we don't have 'basic' tab, make the first one active -->
+      <tal:block tal:repeat="mapping fields_list.other">
+        <li id="${mapping.name}-list"
+            tal:attributes="class python: not fields_list['have_basic'] and repeat['mapping'].index == 0 and 'active' or ''">
+          <a href="#${mapping.name}" data-toggle="tab">${mapping.title}</a>
+        </li>
+      </tal:block>
+    </ul>
+  </tal:block>
 
-  </fieldset>
+
+  <!-- Populate the tabs -->
+  <div class="tab-content">
+    <!-- If we have a basic tab, this should be active -->
+    <fieldset
+      tal:attributes="class python: fields_list['have_basic'] and 'tab-pane fade active in' or 'tab-pane fade'"
+      id="basic">
+      <div
+          tal:define="rndr field.renderer;
+                      tmpl field.widget.item_template"
+          tal:repeat="f fields_list.basic"
+          tal:replace="structure
+                       rndr(tmpl,field=f,cstruct=cstruct.get(f.name, null))" />
+    </fieldset>
+    <!-- If we don't have a basic tab, the first one here should be active -->
+    <tal:block tal:repeat="mapping fields_list.other">
+      <fieldset
+        tal:attributes="class python: not fields_list['have_basic'] and repeat['mapping'].index == 0 and 'tab-pane face active in' or 'tab-pane face'"
+        id="${mapping.name}">
+        <div
+          tal:define="rndr field.renderer;
+                      tmpl field.widget.item_template"
+          tal:replace="structure
+                       rndr(tmpl,field=mapping.children,cstruct=cstruct.get(mapping.name, null))" />
+      </fieldset>
+    </tal:block>
+
+  </div>
+
+  <!-- Append the buttons at the end -->
+  <div tal:condition="field.buttons" tal:omit-tag="inline" class="form-actions">
+    <tal:block repeat="button field.buttons">
+      <button
+          tal:attributes="disabled button.disabled"
+          id="${field.formid+button.name}"
+          name="${button.name}"
+          type="${button.type}"
+          class="btn ${repeat.button.start and 'btn-primary' or ''} ${button.css_class}"
+          value="${button.value}">
+        <i tal:condition="hasattr(button, 'icon') and button.icon"
+                   class="${button.icon}"></i>
+        ${button.title}
+      </button>
+    </tal:block>
+  </div>
 
   <script type="text/javascript" tal:condition="field.use_ajax">
     deform.addCallback(
@@ -71,5 +111,31 @@
        }
     );
   </script>
-  
+  <script>
+    // Highlight all tabs with errors, move to the first one with the error
+    deform.addCallback(
+       '${field.formid}',
+       function() {
+        var alreadySelected = false;
+
+        // If we get some errors, remove the active classes
+        if($("div.tab-content fieldset div.error").length !== 0){
+          $("ul.form-tabs li.active").removeClass('active');
+          $("div.tab-content fieldset.active").removeClass('active in');
+        }
+        // Go through the errors, set first one to active and focus the field,
+        // and add an 'error' class to all of the tabs with errors in them
+        $("div.tab-content fieldset div.error").each( function() {
+          var errorId = $(this.parentNode).attr('id');
+          if(!alreadySelected){
+            $("ul.form-tabs li#" + errorId + '-list').addClass('active');
+            $("div.tab-content fieldset#" + errorId).addClass('active in');
+            $("#" + $(this).attr('id') + " div.controls input").focus();
+            alreadySelected = true;
+          }
+          $("ul.form-tabs li#" +errorId + '-list').addClass('error');
+        });
+    });
+  </script>
+
 </form>
