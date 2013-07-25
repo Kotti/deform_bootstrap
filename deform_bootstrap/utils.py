@@ -3,6 +3,7 @@
 
 from colander import Mapping
 
+
 def tabifyForm(form):
     """
         A function that returns data from the form in a nice way ready for
@@ -10,7 +11,6 @@ def tabifyForm(form):
     """
     children = []
     mappings = []
-
     for i in form.children:
         if type(i.typ) is Mapping:
             mappings.append({'title': i.title,

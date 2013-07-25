@@ -1,22 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from deform.tests.test_schema import DummySchemaNode
-from deform.widget import TextAreaWidget
 import unittest
 import colander
 
 
 class DummyForm(object):
-    def __init__(self, children=[]):
+    def __init__(self, children=[], typ=colander.String()):
         self.children = children
+        self.typ = typ
 
 
 class DummyField(object):
-    def __init__(self, title, name, children=[]):
+    def __init__(self, title, name, children=[], typ=colander.String()):
         self.title = title
         self.name = name
         self.children = children
+        self.typ = typ
 
 
 class TestSet(unittest.TestCase):
@@ -70,7 +70,7 @@ class TestSet(unittest.TestCase):
             DummyField("Description", "description")
         ]
         mappings = [
-            DummyField("Mapping", "mapping", [
+            DummyField("Mapping", "mapping", typ=colander.Mapping(), children=[
                 DummyField("Name", "name"),
                 DummyField("Phone number", "phone-number")
             ])
@@ -93,7 +93,7 @@ class TestSet(unittest.TestCase):
     def test_tabifyForm_mappings_no_default(self):
         from deform_bootstrap.utils import tabifyForm
         mappings = [
-            DummyField("Mapping", "mapping", [
+            DummyField("Mapping", "mapping", typ=colander.Mapping(), children=[
                 DummyField("Name", "name"),
                 DummyField("Phone number", "phone-number")
             ])
