@@ -32,7 +32,7 @@
 
   <!-- Make the tabs -->
   <tal:block tal:condition="not: fields_list.only_one">
-    <ul id="form-tabs" class="nav nav-tabs">
+    <ul class="nav nav-tabs form-tabs">
 
       <!-- Show the 'basic' tab only if we have some info to put in -->
       <tal:block tal:condition="fields_list.have_basic">
@@ -50,7 +50,7 @@
 
 
   <!-- Populate the tabs -->
-  <div id="form-tabs-content" class="tab-content">
+  <div class="tab-content">
     <!-- If we have a basic tab, this should be active -->
     <fieldset
       tal:attributes="class python: fields_list['have_basic'] and 'tab-pane fade active in' or 'tab-pane fade'"
@@ -119,21 +119,21 @@
         var alreadySelected = false;
 
         // If we get some errors, remove the active classes
-        if($("div#form-tabs-content fieldset div.error").length !== 0){
-          $("ul#form-tabs li.active").removeClass('active');
-          $("div#form-tabs-content fieldset.active").removeClass('active in');
+        if($("div.tab-content fieldset div.error").length !== 0){
+          $("ul.form-tabs li.active").removeClass('active');
+          $("div.tab-content fieldset.active").removeClass('active in');
         }
         // Go through the errors, set first one to active and focus the field,
         // and add an 'error' class to all of the tabs with errors in them
-        $("div#form-tabs-content fieldset div.error").each( function() {
+        $("div.tab-content fieldset div.error").each( function() {
           var errorId = $(this.parentNode).attr('id');
           if(!alreadySelected){
-            $("ul#form-tabs li#" + errorId + '-list').addClass('active');
-            $("div#form-tabs-content fieldset#" + errorId).addClass('active in');
+            $("ul.form-tabs li#" + errorId + '-list').addClass('active');
+            $("div.tab-content fieldset#" + errorId).addClass('active in');
             $("#" + $(this).attr('id') + " div.controls input").focus();
             alreadySelected = true;
           }
-          $("ul#form-tabs li#" +errorId + '-list').addClass('error');
+          $("ul.form-tabs li#" +errorId + '-list').addClass('error');
         });
     });
   </script>
