@@ -45,6 +45,31 @@ looks in practice you can run these commands, assuming that you have a
 
 You should now be able to access the demo site at http://0.0.0.0:8521
 
+Using tabs in forms
+-------------------
+
+Mappings in form appear in new tabs. The mapping title is the name of the tab,
+and the data in the mapping appears inside the tab.
+Everything that isn't in a mapping appears inside a '*Default*' tab. If no
+mappings are present, there are no tabs on the form.
+
+To get a form with the tab *Default*, which has a *number* field, and the tab
+*Mapping*, which has a *name* and *date* field, use the following example. If you
+want to change the title of the tab, use `Mapping(title="New title")`
+
+    class Mapping(colander.Schema):
+        name = colander.SchemaNode(
+            colander.String(),
+            description='Content name')
+        date = colander.SchemaNode(
+            colander.Date(),
+            widget=deform.widget.DatePartsWidget(),
+            description='Content date')
+    class Schema(colander.Schema):
+        number = colander.SchemaNode(
+            colander.Integer())
+        mapping = Mapping()
+
 Additional widgets / getting rid of legacy stuff
 ================================================
 
