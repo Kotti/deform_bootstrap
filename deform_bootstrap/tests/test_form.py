@@ -32,39 +32,39 @@ class TestSet(unittest.TestCase):
         from deform.schema import Set
         return Set(**kw)
 
-    def test_tabifyForm_empty(self):
-        from deform_bootstrap.utils import tabifyForm
+    def test_tabify_form_empty(self):
+        from deform_bootstrap.utils import tabify_form
 
         form = DummyForm()
 
-        result = tabifyForm(form)
+        result = tabify_form(form)
         expected_result = {
-            'default': [],
+            'basic': [],
             'other': [],
             'only_one': True,
-            'have_default': False,
+            'have_basic': False,
         }
         self.assertEqual(result, expected_result)
 
-    def test_tabifyForm_no_mappings(self):
-        from deform_bootstrap.utils import tabifyForm
+    def test_tabify_form_no_mappings(self):
+        from deform_bootstrap.utils import tabify_form
         children = [
             DummyField("Title", "title"),
             DummyField("Description", "description")
         ]
         form = DummyForm(children)
 
-        result = tabifyForm(form)
+        result = tabify_form(form)
         expected_result = {
-            'default': children,
+            'basic': children,
             'other': [],
             'only_one': True,
-            'have_default': True,
+            'have_basic': True,
         }
         self.assertEqual(result, expected_result)
 
-    def test_tabifyForm_mappings(self):
-        from deform_bootstrap.utils import tabifyForm
+    def test_tabify_form_mappings(self):
+        from deform_bootstrap.utils import tabify_form
         children = [
             DummyField("Title", "title"),
             DummyField("Description", "description")
@@ -78,20 +78,20 @@ class TestSet(unittest.TestCase):
 
         form = DummyForm(children + mappings)
 
-        result = tabifyForm(form)
+        result = tabify_form(form)
         expected_result = {
-            'default': children,
+            'basic': children,
             'other': [{'title': "Mapping",
                        'name': "mapping",
                        'children': mappings[0],
                        }],
             'only_one': False,
-            'have_default': True,
+            'have_basic': True,
         }
         self.assertEqual(result, expected_result)
 
-    def test_tabifyForm_mappings_no_default(self):
-        from deform_bootstrap.utils import tabifyForm
+    def test_tabify_form_mappings_no_basic(self):
+        from deform_bootstrap.utils import tabify_form
         mappings = [
             DummyField("Mapping", "mapping", typ=colander.Mapping(), children=[
                 DummyField("Name", "name"),
@@ -101,14 +101,14 @@ class TestSet(unittest.TestCase):
 
         form = DummyForm(mappings)
 
-        result = tabifyForm(form)
+        result = tabify_form(form)
         expected_result = {
-            'default': [],
+            'basic': [],
             'other': [{'title': "Mapping",
                        'name': "mapping",
                        'children': mappings[0],
                        }],
             'only_one': False,
-            'have_default': False,
+            'have_basic': False,
         }
         self.assertEqual(result, expected_result)

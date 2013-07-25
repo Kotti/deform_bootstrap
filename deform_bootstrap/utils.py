@@ -4,7 +4,7 @@
 from colander import Mapping
 
 
-def tabifyForm(form):
+def tabify_form(form):
     """
         A function that returns data from the form in a nice way ready for
         tabbed view.
@@ -21,8 +21,8 @@ def tabifyForm(form):
             children.append(i)
 
     return {
-        'default': children,
+        'basic': children,
         'other': mappings,
         'only_one': mappings == [],
-        'have_default': len(children) > 1 or len(children) == 1 and children[0].name != 'csrf_token'
+        'have_basic': len(children) > 1 or len(children) == 1 and children[0].name != 'csrf_token'
     }

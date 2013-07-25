@@ -48,27 +48,37 @@ You should now be able to access the demo site at http://0.0.0.0:8521
 Using tabs in forms
 -------------------
 
-Mappings in form appear in new tabs. The mapping title is the name of the tab,
-and the data in the mapping appears inside the tab.
-Everything that isn't in a mapping appears inside a '*Default*' tab. If no
-mappings are present, there are no tabs on the form.
+To make a tabbed form, use mapping. Each mapping will appear as a new tab,
+taking the title of the mapping as the name for the tab.
+If you specify no tabs for some information, it will default to a '*Basic*'
+tab.
 
-To get a form with the tab *Default*, which has a *number* field, and the tab
-*Mapping*, which has a *name* and *date* field, use the following example. If you
-want to change the title of the tab, use `Mapping(title="New title")`
-
-    class Mapping(colander.Schema):
+    class Person(colander.Schema):
         name = colander.SchemaNode(
             colander.String(),
-            description='Content name')
-        date = colander.SchemaNode(
-            colander.Date(),
-            widget=deform.widget.DatePartsWidget(),
-            description='Content date')
-    class Schema(colander.Schema):
-        number = colander.SchemaNode(
-            colander.Integer())
-        mapping = Mapping()
+            title=_(u'Name'),
+        )
+
+        surname = colander.SchemaNode(
+            colander.String(),
+            title=_(u'Surname'),
+        )
+
+
+    class Car(colander.Schema):
+        color = colander.SchemaNode(
+            colander.String(),
+            title=u'Color',
+        )
+        horsepower = colander.SchemaNode(
+            colander.Integer(),
+            title=u"Horsepower",
+        )
+
+
+    class ClientSchema(colander.Schema):
+        person = Person(title="Person information")
+        car = Car(title="Car information")
 
 Additional widgets / getting rid of legacy stuff
 ================================================
