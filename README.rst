@@ -48,10 +48,10 @@ You should now be able to access the demo site at http://0.0.0.0:8521
 Using tabs in forms
 -------------------
 
-To make a tabbed form, use mapping. Each mapping will appear as a new tab,
-taking the title of the mapping as the name for the tab.
-If you specify no tabs for some information, it will default to a '*Basic*'
-tab.
+To make a tabbed form, use mapping. Each mapping will appear as a new
+tab, taking the title of the mapping as the name for the tab.  If you
+specify no tabs for some information, it will default to a '*Basic*'
+tab::
 
     class Person(colander.Schema):
         name = colander.SchemaNode(
@@ -79,6 +79,7 @@ tab.
     class ClientSchema(colander.Schema):
         person = Person(title="Person information")
         car = Car(title="Car information")
+
 
 Additional widgets / getting rid of legacy stuff
 ================================================
