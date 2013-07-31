@@ -51,34 +51,38 @@ Using tabs in forms
 To make a tabbed form, use mapping. Each mapping will appear as a new
 tab, taking the title of the mapping as the name for the tab.  If you
 specify no tabs for some information, it will default to a '*Basic*'
-tab::
+tab.
+
+A form using the following `Client` schema will render with two tabs
+'Person data' and 'Car stuffs':
+
+::
+
+    import colander
 
     class Person(colander.Schema):
         name = colander.SchemaNode(
             colander.String(),
-            title=_(u'Name'),
-        )
-
+            title='Name',
+            )
         surname = colander.SchemaNode(
             colander.String(),
-            title=_(u'Surname'),
-        )
-
+            title='Surname',
+            )
 
     class Car(colander.Schema):
         color = colander.SchemaNode(
             colander.String(),
-            title=u'Color',
-        )
+            title='Color',
+            )
         horsepower = colander.SchemaNode(
             colander.Integer(),
-            title=u"Horsepower",
-        )
+            title='Horsepower',
+            )
 
-
-    class ClientSchema(colander.Schema):
-        person = Person(title="Person information")
-        car = Car(title="Car information")
+    class Client(colander.Schema):
+        person = Person(title='Person data')
+        car = Car(title='Car stuffs')
 
 
 Additional widgets / getting rid of legacy stuff
