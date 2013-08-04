@@ -4,6 +4,9 @@ CHANGES
 0.2.9 - Unreleased
 ------------------
 
+- add bootstrap iconglyphs and fix deform_bootstrap.css to point to 
+  them. See #61
+
 0.2.8 - 2013-06-25
 ------------------
 
