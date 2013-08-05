@@ -7,6 +7,8 @@ CHANGES
 - add bootstrap iconglyphs and fix deform_bootstrap.css to point to 
   them. See #61
 
+- add readonly textinput that uses bootstrap styling
+
 0.2.8 - 2013-06-25
 ------------------
 
@@ -20,7 +22,7 @@ CHANGES
 0.2.7 - 2013-05-04
 ------------------
 
-- Add suuport for Py3k.  See #55.
+- Add support for Py3k.  See #55.
 
 - Improve test coverage.  See #55.
 
