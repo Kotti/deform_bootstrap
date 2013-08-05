@@ -233,6 +233,7 @@ Information for developers / contributors
 
 Running unit tests
 ------------------
+::
 
   $ bin/python setup.py dev
   $ bin/py.test
