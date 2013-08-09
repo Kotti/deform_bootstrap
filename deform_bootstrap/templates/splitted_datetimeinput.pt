@@ -3,13 +3,13 @@
 <div class="row">
     <div class="input-prepend span3">
       <span class="add-on" i18n:translate="">Date</span
-      ><input type="text" name="date" value="${date}"
+      ><input type="date" name="date" value="${date}"
               class="span2 ${field.widget.css_class}"
               id="${field.oid}-date"/>
     </div>
     <div class="input-prepend span3">
       <span class="add-on" i18n:translate="">Time</span
-      ><input type="text" name="time" value="${time}"
+      ><input type="time" name="time" value="${time}"
               class="span2 ${field.widget.css_class}"
               id="${field.oid}-time"/>
     </div>

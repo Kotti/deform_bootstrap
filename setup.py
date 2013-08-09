@@ -24,7 +24,7 @@ tests_require = [
 
 setup(
     name='deform_bootstrap',
-    version='0.2.6',
+    version='0.2.9',
     description="Twitter Bootstrap compatible widgets, templates and styles for the deform form library",
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
@@ -34,7 +34,7 @@ setup(
     keywords='twitter bootstrap deform styles css web forms form',
     author='Daniel Nouri and contributors',
     author_email="pylons-discuss@googlegroups.com",
-    url='http://pypi.python.org/pypi/deform_bootstrap',
+    url='https://github.com/Kotti/deform_bootstrap',
     license='BSD-derived (http://www.repoze.org/LICENSE.txt)',
     packages=find_packages(),
     include_package_data=True,

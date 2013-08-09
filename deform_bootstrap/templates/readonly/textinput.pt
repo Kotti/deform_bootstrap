@@ -1,0 +1,10 @@
+<span tal:define="css_class css_class|field.widget.css_class;
+                  oid oid|field.oid;
+                  style style|field.widget.style|None"
+      tal:omit-tag="">
+    <span tal:attributes="class string:uneditable-input ${css_class};
+                          style style"
+          id="${oid}">
+              ${cstruct}
+    </span>
+</span>
