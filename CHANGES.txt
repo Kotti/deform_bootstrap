@@ -4,10 +4,12 @@ CHANGES
 0.2.9 - Unreleased
 ------------------
 
-- add bootstrap iconglyphs and fix deform_bootstrap.css to point to 
-  them. See #61
+- Add bootstrap iconglyphs and fix deform_bootstrap.css to point to
+  them.  See #61
 
-- add readonly textinput that uses bootstrap styling
+- Add readonly textinput that uses bootstrap styling.
+
+- Add tabbed forms support.  See ``README.rst`` for details.
 
 0.2.8 - 2013-06-25
 ------------------
