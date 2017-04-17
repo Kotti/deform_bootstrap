@@ -1,0 +1,21 @@
+<span tal:omit-tag="">
+  <input tal:attributes="
+          class field.widget.css_class;
+             id field.oid;
+      maxlength getattr(field.widget, 'maxlength', None);
+           name field.name;
+    placeholder getattr(field.widget, 'placeholder', None);
+       required 'required' if field.required else None;
+           size field.widget.size;
+           type getattr(field.widget, 'type', 'text');
+          value cstruct or None;
+  " />
+  <script tal:condition="field.widget.mask" type="text/javascript">
+    deform.addCallback(
+      '${field.oid}',
+      function (oid) {
+        $("#" + oid).mask("${field.widget.mask}",
+                          {placeholder:"${field.widget.mask_placeholder}"});
+      });
+  </script>
+</span>
