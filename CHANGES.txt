@@ -14,7 +14,7 @@ CHANGES
 
 - Add readonly textinput that uses bootstrap styling.
 
-- Add tabbed forms support.  See ``README.rst`` for details.
+- Add tabbed forms support.  See ``README.txt`` for details.
 
 0.2.8 - 2013-06-25
 ------------------
